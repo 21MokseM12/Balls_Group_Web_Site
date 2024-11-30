@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/balls_group_concerts_db
+    username: postgres
+    password: admin
