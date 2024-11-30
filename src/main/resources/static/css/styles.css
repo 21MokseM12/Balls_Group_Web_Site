@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: #111;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+.preloader .logo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f0a500;
+    animation: blink 1.5s infinite;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo img {
+    width: 150px;
+    height: auto;
+    animation: blink 1.3s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.show {
+    opacity: 1;
+}
+
+/* Общие стили для header */
+header {
+    display: flex;
+    justify-content: space-between; /* Логотип слева, меню занимает остальную часть */
+    align-items: center; /* Выравнивание по вертикали */
+    padding: 0 20px; /* Отступы слева и справа */
+    height: 80px; /* Высота шапки */
+    background: rgba(0, 0, 0, 0.8); /* Темный фон для контраста */
+    position: sticky; /* Закрепляем header наверху страницы */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Логотип */
+header .logo {
+    width: 150px; /* Настройка ширины логотипа */
+    height: auto; /* Сохраняем пропорции */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Стили для меню */
+header nav {
+    flex-grow: 1; /* Занимает оставшееся пространство */
+    text-align: center; /* Центрирование текста */
+}
+
+header nav ul {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+    display: inline-flex; /* Горизонтальное выравнивание меню */
+    gap: 30px; /* Расстояние между пунктами меню */
+}
+
+header nav ul li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #fff; /* Белый цвет текста */
+    font-size: 1.2rem; /* Размер шрифта */
+    transition: color 0.3s; /* Плавное изменение цвета при наведении */
+}
+
+header nav ul li a:hover {
+    color: #f0a500; /* Цвет при наведении */
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../img/hero.jpg') no-repeat center center/cover;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn {
+    background: #f0a500;
+    color: #111;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.hero .btn:hover {
+    background: #d89000;
+}
+
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.about-section, .music-section, .tour-section, .contacts-section {
+    background: #222;
+    margin-bottom: 20px;
+}
+
+.track-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.track {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.track:hover {
+    transform: scale(1.05);
+    background: #444;
+}
