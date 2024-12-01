@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-tag-1.0.0
+      author: moksem
+      changes:
+        - tagDatabase:
+            tag: v.1.0.0
+  - include:
+      file: create_concerts.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create_users.yaml
+      relativeToChangelogFile: true

@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schema-concerts
+      author: moksem
+      changes:
+        - sql:
+            CREATE SCHEMA IF NOT EXISTS concerts
+  - changeSet:
+      id: create-table-concert
+      author: moksem
+      changes:
+        - createTable:
+            tableName: concert
+            schemaName: concerts
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: city
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: concert_venue
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp without time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tickets_link
+                  type: text
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-table-meeting-links
+      author: moksem
+      changes:
+        - createTable:
+            tableName: meeting_links
+            schemaName: concerts
+            columns:
+              - column:
+                  name: concert_id
+                  type: integer
+                  constraints:
+                    foreignKeyName: concert_id_fk
+                    references: concerts.concert(id)
+                    nullable: false
+              - column:
+                  name: meeting_link
+                  type: text
+                  constraints:
+                    nullable: true

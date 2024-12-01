@@ -1,7 +1,11 @@
 spring:
   jpa:
-    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
   datasource:
-    url: jdbc:postgresql://localhost:5432/balls_group_concerts_db
+    url: jdbc:postgresql://localhost:5432/balls_group_db
     username: postgres
     password: admin
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml

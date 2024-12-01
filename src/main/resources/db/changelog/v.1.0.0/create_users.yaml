@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schema-users
+      author: moksem
+      changes:
+        - sql:
+            CREATE SCHEMA IF NOT EXISTS users
+  - changeSet:
+      id: create-table-accounts
+      author: moksem
+      changes:
+        - createTable:
+            tableName: accounts
+            schemaName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: text
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-table-user-roles
+      author: moksem
+      changes:
+        - createTable:
+            tableName: user_roles
+            schemaName: users
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: user_id_fk
+                    nullable: false
+                    references: users.accounts(id)
+              - column:
+                  name: roles
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
