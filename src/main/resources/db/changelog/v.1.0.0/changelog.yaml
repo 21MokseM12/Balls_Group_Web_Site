@@ -11,3 +11,9 @@ databaseChangeLog:
   - include:
       file: create_users.yaml
       relativeToChangelogFile: true
+  - include:
+      file: create_music.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create_shop.yaml
+      relativeToChangelogFile: true

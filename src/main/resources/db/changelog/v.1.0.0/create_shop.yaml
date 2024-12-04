@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schema-shop
+      author: moksem
+      changes:
+        - sql:
+            CREATE SCHEMA IF NOT EXISTS shop
+  - changeSet:
+      id: create-table-product
+      author: moksem
+      changes:
+        - createTable:
+            tableName: products
+            schemaName: shop
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_title
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: true
+              - column:
+                  name: is_stock
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: integer
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-table-clothes-size
+      author: moksem
+      changes:
+        - createTable:
+            tableName: clothes_size
+            schemaName: shop
+            columns:
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: product_id_clothes_fk
+                    references: shop.products(id)
+              - column:
+                  name: clothing_size
+                  type: varchar(16)
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: create-table-photo-links
+      author: moksem
+      changes:
+        - createTable:
+            tableName: product_photo_links
+            schemaName: shop
+            columns:
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: product_id_photo_links_fk
+                    references: shop.products(id)
+              - column:
+                  name: product_photo_links
+                  type: text
+                  constraints:
+                    nullable: true
