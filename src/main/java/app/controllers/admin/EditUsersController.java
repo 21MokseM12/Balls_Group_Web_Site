@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1/add-user/")
+@RequestMapping("/api/v1/edit-users/")
 public class EditUsersController {
 
     @Autowired
@@ -39,5 +41,16 @@ public class EditUsersController {
         } else {
             return ResponseEntity.ok("Пользователя с таким ID не существует");
         }
+    }
+
+    @GetMapping("get-all/")
+    public List<Account> getAllUsers() {
+        return (List<Account>) repository.findAll();
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

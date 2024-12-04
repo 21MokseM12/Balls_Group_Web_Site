@@ -95,3 +95,15 @@ table th {
     margin-right: 8px;
     cursor: pointer;
 }
+
+.delete-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+}
+.delete-icon:hover {
+    transform: scale(1.2);
+    opacity: 0.7;
+}
