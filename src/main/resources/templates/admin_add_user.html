@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/styles_admin_add_user.css">
+</head>
+<body>
+<header>
+    <h1>Admin панель</h1>
+</header>
+<main>
+    <!-- Registration Form -->
+    <form id="register-form">
+        <h2>Регистрация нового пользователя</h2>
+        <label for="username">Имя пользователя</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="register-role-admin">Роли</label>
+        <div class="roles-container">
+            <div class="role-item">
+                <input type="checkbox" id="register-role-admin" name="roles" value="SYSTEM_ADMIN">
+                <label for="register-role-admin">Администратор</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="register-role-merch" name="roles" value="MERCH_MANAGER">
+                <label for="register-role-merch">Менеджер магазина</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="register-role-concert" name="roles" value="CONCERT_MANAGER">
+                <label for="register-role-concert">Концерт-директор</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="register-role-albums" name="roles" value="ALBUMS_MANAGER">
+                <label for="register-role-albums">Менеджер альбомов</label>
+            </div>
+        </div>
+
+        <button type="submit">Регистрация</button>
+    </form>
+
+    <!-- Edit User Form -->
+    <form id="edit-form">
+        <h2>Редактирование пользователя</h2>
+        <label for="edit-user-id">User ID</label>
+        <input type="text" id="edit-user-id" name="edit-user-id" required>
+
+        <label for="edit-username">Новое имя пользователя</label>
+        <input type="text" id="edit-username" name="edit-username">
+
+        <label for="edit-password">Новый пароль</label>
+        <input type="password" id="edit-password" name="edit-password">
+
+        <label for="edit-role-admin">Роли</label>
+        <div class="roles-container">
+            <div class="role-item">
+                <input type="checkbox" id="edit-role-admin" name="edit-roles" value="SYSTEM_ADMIN">
+                <label for="edit-role-admin">Администратор</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="edit-role-merch" name="edit-roles" value="MERCH_MANAGER">
+                <label for="edit-role-merch">Менеджер магазина</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="edit-role-concert" name="edit-roles" value="CONCERT_MANAGER">
+                <label for="edit-role-concert">Концерт-директор</label>
+            </div>
+            <div class="role-item">
+                <input type="checkbox" id="edit-role-albums" name="edit-roles" value="ALBUMS_MANAGER">
+                <label for="edit-role-albums">Менеджер альбомов</label>
+            </div>
+        </div>
+
+        <button type="submit">Обновить</button>
+    </form>
+
+    <!-- View All Users -->
+    <section id="user-list">
+        <h2>All Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Dynamic content goes here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/js/script_admin_add_user.js"></script>
+</main>
+</body>
+</html>
