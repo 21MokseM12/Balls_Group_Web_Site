@@ -1,4 +1,4 @@
-package app.controllers;
+package app.controllers.admin;
 
 import app.domain.users.Account;
 import app.repository.AccountRepository;
