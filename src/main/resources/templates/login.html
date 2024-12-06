@@ -5,29 +5,35 @@
     <link rel="stylesheet" href="/css/styles_login.css">
 </head>
 <body>
-<div th:if="${param.error}" id="errorModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal('errorModal')">&times;</span>
-        <p>Введены неверные логин или пароль</p>
+<div id="preloader" class="preloader">
+    <div class="logo">
+        <img src="/img/shop_main_page/logo.jpg" class="logo-image" alt="Логотип ШАРЫ">
     </div>
 </div>
-
-<div th:if="${param.logout}" id="logoutModal" class="modal">
-    <div class="modal-content">
-        <span class="close-button" onclick="closeModal('logoutModal')">&times;</span>
-        <p>Вы вышли из аккаунта</p>
+<main id="main-content">
+    <div th:if="${param.error}" id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('errorModal')">&times;</span>
+            <p>Введены неверные логин или пароль</p>
+        </div>
     </div>
-</div>
 
-<div class="form-container">
-    <h2>Для сотрудников</h2>
-    <form th:action="@{/login}" method="post">
-        <div><label> Логин : <input type="text" name="username"/> </label></div>
-        <div><label> Пароль: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Войти"/></div>
-    </form>
-</div>
+    <div th:if="${param.logout}" id="logoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('logoutModal')">&times;</span>
+            <p>Вы вышли из аккаунта</p>
+        </div>
+    </div>
 
+    <div class="form-container">
+        <h2>Для сотрудников</h2>
+        <form th:action="@{/login}" method="post">
+            <div><label> Логин : <input type="text" name="username"/> </label></div>
+            <div><label> Пароль: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Войти"/></div>
+        </form>
+    </div>
+</main>
 <script src="/js/script_login.js"></script>
 </body>
 </html>
