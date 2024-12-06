@@ -37,7 +37,7 @@ public class AccountEditAdminService {
         repository.deleteById(id);
     }
 
-    public String encodeAccountPassword(String password) {
-        return encoder.encode(password);
+    public void encodeAccountPassword(Account account) {
+        account.setPassword(encoder.encode(account.getPassword()));
     }
 }

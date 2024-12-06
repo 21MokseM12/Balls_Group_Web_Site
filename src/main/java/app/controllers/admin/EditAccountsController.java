@@ -19,7 +19,7 @@ public class EditAccountsController {
     @ResponseBody
     public ResponseEntity<String> registerNewUser(@RequestBody Account account) {
         if (!accountService.existsByUsername(account.getUsername())) {
-            account.setPassword(accountService.encodeAccountPassword(account.getPassword()));
+            accountService.encodeAccountPassword(account);
             accountService.saveAccount(account);
             return ResponseEntity.ok("Пользователь был успешно добавлен!");
         } else {
@@ -31,7 +31,7 @@ public class EditAccountsController {
     @ResponseBody
     public ResponseEntity<String> editUser(@RequestBody Account account) {
         if (accountService.existsById(account.getId())) {
-            account.setPassword(accountService.encodeAccountPassword(account.getPassword()));
+            accountService.encodeAccountPassword(account);
             accountService.saveAccount(account);
             return ResponseEntity.ok("Данные пользователя обновлены!");
         } else {
