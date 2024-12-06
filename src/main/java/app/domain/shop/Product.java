@@ -11,18 +11,23 @@ import java.util.Set;
 @Getter
 @Setter
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String productTitle;
+    private String title;
 
     private String description;
 
     private Integer price;
 
-    private boolean isStock;
+    private int quantityInStock;
+
+    private boolean isSizeable;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", name = "category_id", nullable = false)
+    private Category category;
 
     @ElementCollection(targetClass = ClothingSize.class, fetch = FetchType.EAGER)
     @CollectionTable(schema = "shop", name = "clothes_size", joinColumns = @JoinColumn(name = "product_id"))

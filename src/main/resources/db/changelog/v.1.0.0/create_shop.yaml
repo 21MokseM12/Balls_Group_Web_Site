@@ -6,7 +6,26 @@ databaseChangeLog:
         - sql:
             CREATE SCHEMA IF NOT EXISTS shop
   - changeSet:
-      id: create-table-product
+      id: create-table-categories
+      author: moksem
+      changes:
+        - createTable:
+            tableName: categories
+            schemaName: shop
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category
+                  type: text
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-table-products
       author: moksem
       changes:
         - createTable:
@@ -20,7 +39,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: product_title
+                  name: title
                   type: varchar(64)
                   constraints:
                     nullable: false
@@ -30,15 +49,27 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
-                  name: is_stock
-                  type: boolean
-                  constraints:
-                    nullable: false
-              - column:
                   name: price
                   type: integer
                   constraints:
                     nullable: false
+              - column:
+                  name: quantity_in_stock
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_sizeable
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: category_fk
+                    references: shop.categories(id)
   - changeSet:
       id: create-table-clothes-size
       author: moksem
