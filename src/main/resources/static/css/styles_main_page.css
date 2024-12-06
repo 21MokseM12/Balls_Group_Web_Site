@@ -170,3 +170,14 @@ section {
     transform: scale(1.05);
     background: #444;
 }
+
+a.logo-link {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Сохраняет цвет текста родителя */
+    display: inline-block; /* Устанавливает поведение блока для обёртки */
+}
+
+a.logo-link:hover,
+a.logo-link:focus {
+    color: inherit; /* Убирает изменения цвета при наведении или фокусе */
+}
