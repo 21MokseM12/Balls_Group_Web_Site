@@ -5,12 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/main/")
 public class UserMainPageController {
 
-    @GetMapping("/")
+    @GetMapping
     public String mainPage() {
         return "mainPage";
+    }
+
+    @GetMapping("shop/")
+    public String shopPage() {
+        return "shop_main_page";
     }
 
 }
