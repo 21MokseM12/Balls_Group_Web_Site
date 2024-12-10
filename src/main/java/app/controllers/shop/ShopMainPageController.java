@@ -1,16 +1,17 @@
-package app.controllers.user;
+package app.controllers.shop;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main/")
-public class UserMainPageController {
+@RequestMapping("/main/shop/")
+public class ShopMainPageController {
 
     @GetMapping
-    public String mainPage() {
-        return "mainPage";
+    public String shopPage(Model model) {
+        return "shop_main_page";
     }
 
 }
