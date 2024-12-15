@@ -1,6 +1,6 @@
 package app.service.security;
 
-import app.domain.users.Account;
+import app.domain.entites.users.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
