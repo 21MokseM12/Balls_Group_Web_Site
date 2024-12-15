@@ -1,6 +1,6 @@
 package app.controllers.admin;
 
-import app.domain.users.Account;
+import app.domain.entites.users.Account;
 import app.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,8 +39,7 @@ public class AdminPageController {
     @GetMapping("/edit-shop")
     @PreAuthorize("hasAuthority('MERCH_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
     public String editShopPanel() {
-        //todo
-        return "";
+        return "admin_edit_products";
     }
 
     @GetMapping("/edit-albums")
