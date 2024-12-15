@@ -1,4 +1,4 @@
-package app.service.controllers.admin.product;
+package app.service.controllers.admin.shop.product;
 
 import com.amazonaws.services.appstream.model.EntitlementNotFoundException;
 

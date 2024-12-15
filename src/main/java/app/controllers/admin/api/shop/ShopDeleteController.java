@@ -1,6 +1,6 @@
 package app.controllers.admin.api.shop;
 
-import app.service.controllers.admin.shop.ShopService;
+import app.service.controllers.admin.shop.shop_management.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,4 +1,4 @@
-package app.service.controllers.admin.product;
+package app.service.controllers.admin.shop.product;
 
 import app.domain.entites.shop.Product;
 

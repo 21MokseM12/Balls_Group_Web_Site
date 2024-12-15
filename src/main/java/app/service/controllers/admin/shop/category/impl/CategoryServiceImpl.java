@@ -1,9 +1,9 @@
-package app.service.controllers.admin.category.impl;
+package app.service.controllers.admin.shop.category.impl;
 
 import app.domain.entites.shop.Category;
 import app.repository.CategoryRepository;
-import app.service.controllers.admin.category.CategoryException;
-import app.service.controllers.admin.category.CategoryService;
+import app.service.controllers.admin.shop.category.CategoryException;
+import app.service.controllers.admin.shop.category.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

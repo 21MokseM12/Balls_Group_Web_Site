@@ -1,4 +1,4 @@
-package app.service.controllers.admin.clothing;
+package app.service.controllers.admin.shop.clothing;
 
 import app.domain.entites.shop.ClothingSize;
 

@@ -1,4 +1,4 @@
-package app.service.controllers.admin.category;
+package app.service.controllers.admin.shop.category;
 
 import com.amazonaws.services.appstream.model.EntitlementNotFoundException;
 

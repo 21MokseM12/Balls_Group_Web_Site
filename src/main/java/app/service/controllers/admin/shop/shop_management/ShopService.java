@@ -1,4 +1,4 @@
-package app.service.controllers.admin.shop;
+package app.service.controllers.admin.shop.shop_management;
 
 import app.domain.entites.shop.Category;
 import app.domain.entites.shop.ClothingSize;

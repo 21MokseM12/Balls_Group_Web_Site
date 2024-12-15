@@ -1,9 +1,9 @@
-package app.service.controllers.admin.product.impl;
+package app.service.controllers.admin.shop.product.impl;
 
 import app.domain.entites.shop.Product;
 import app.repository.ProductRepository;
-import app.service.controllers.admin.product.ProductException;
-import app.service.controllers.admin.product.ProductService;
+import app.service.controllers.admin.shop.product.ProductException;
+import app.service.controllers.admin.shop.product.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

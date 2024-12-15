@@ -3,7 +3,7 @@ package app.controllers.admin.api.shop;
 import app.domain.entites.shop.Category;
 import app.domain.entites.shop.ClothingSize;
 import app.domain.entites.shop.Product;
-import app.service.controllers.admin.shop.ShopService;
+import app.service.controllers.admin.shop.shop_management.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

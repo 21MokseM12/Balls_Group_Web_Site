@@ -1,9 +1,9 @@
-package app.service.controllers.admin.clothing.impl;
+package app.service.controllers.admin.shop.clothing.impl;
 
 import app.domain.entites.shop.ClothingSize;
 import app.repository.ClothingSizeRepository;
-import app.service.controllers.admin.clothing.ClothingSizeException;
-import app.service.controllers.admin.clothing.ClothingSizeService;
+import app.service.controllers.admin.shop.clothing.ClothingSizeException;
+import app.service.controllers.admin.shop.clothing.ClothingSizeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

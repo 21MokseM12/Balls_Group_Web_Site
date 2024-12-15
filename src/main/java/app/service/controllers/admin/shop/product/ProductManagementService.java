@@ -1,8 +1,8 @@
-package app.service.controllers.admin.product;
+package app.service.controllers.admin.shop.product;
 
 import app.domain.entites.shop.Product;
-import app.service.controllers.admin.category.CategoryService;
-import app.service.controllers.admin.clothing.ClothingSizeService;
+import app.service.controllers.admin.shop.category.CategoryService;
+import app.service.controllers.admin.shop.clothing.ClothingSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
