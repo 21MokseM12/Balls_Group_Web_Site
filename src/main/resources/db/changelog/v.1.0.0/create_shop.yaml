@@ -26,6 +26,26 @@ databaseChangeLog:
                   constraints:
                     nullable: false
   - changeSet:
+      id: create-table-clothes-size
+      author: moksem
+      changes:
+        - createTable:
+            tableName: sizes
+            schemaName: shop
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: size
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+  - changeSet:
       id: create-table-products
       author: moksem
       changes:
@@ -36,6 +56,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: bigint
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -60,11 +81,6 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: is_sizeable
-                  type: boolean
-                  constraints:
-                    nullable: false
-              - column:
                   name: category_id
                   type: bigint
                   constraints:
@@ -72,25 +88,29 @@ databaseChangeLog:
                     foreignKeyName: category_fk
                     references: shop.categories(id)
   - changeSet:
-      id: create-table-clothes-size
+      id: create-table-sizes_products
       author: moksem
       changes:
         - createTable:
-            tableName: clothes_size
             schemaName: shop
+            tableName: products_sizes
             columns:
               - column:
                   name: product_id
                   type: bigint
                   constraints:
+                    primaryKey: true
                     nullable: false
-                    foreignKeyName: product_id_clothes_fk
+                    foreignKeyName: product_id_fk
                     references: shop.products(id)
               - column:
-                  name: clothing_size
-                  type: varchar(16)
+                  name: size_id
+                  type: integer
                   constraints:
-                    nullable: true
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: size_id_fk
+                    references: shop.sizes(id)
   - changeSet:
       id: create-table-photo-links
       author: moksem
