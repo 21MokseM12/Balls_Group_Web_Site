@@ -1,6 +1,6 @@
-package app.service.admin;
+package app.service.controllers.admin;
 
-import app.domain.users.Account;
+import app.domain.entites.users.Account;
 import app.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

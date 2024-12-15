@@ -1,4 +1,4 @@
-package app.domain.users;
+package app.domain.entites.users;
 
 import jakarta.persistence.*;
 import lombok.Getter;

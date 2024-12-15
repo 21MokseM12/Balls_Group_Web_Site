@@ -1,4 +1,4 @@
-package app.domain.concerts;
+package app.domain.entites.concerts;
 
 import jakarta.persistence.*;
 import lombok.Getter;

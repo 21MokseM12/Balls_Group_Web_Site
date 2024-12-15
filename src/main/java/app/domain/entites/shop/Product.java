@@ -1,4 +1,4 @@
-package app.domain.shop;
+package app.domain.entites.shop;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,15 +23,17 @@ public class Product {
 
     private int quantityInStock;
 
-    private boolean isSizeable;
-
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "category_id", nullable = false)
     private Category category;
 
-    @ElementCollection(targetClass = ClothingSize.class, fetch = FetchType.EAGER)
-    @CollectionTable(schema = "shop", name = "clothes_size", joinColumns = @JoinColumn(name = "product_id"))
-    @Enumerated(EnumType.STRING)
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            schema = "shop",
+            name = "products_sizes",
+            joinColumns = { @JoinColumn(name = "product_id") },
+            inverseJoinColumns = { @JoinColumn(name = "size_id") }
+    )
     private Set<ClothingSize> clothingSize;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
