@@ -77,12 +77,9 @@ async function deleteUser(event) {
         method: 'DELETE'
     });
 
-    if (response.ok) {
-        alert('Пользователь успешно удален');
-        await loadUsers();
-    } else {
-        alert('При удалении пользователя произошла ошибка');
-    }
+    const result = await response.text()
+    alert(result)
+    await loadUsers();
 }
 
 document.addEventListener('DOMContentLoaded', loadUsers);

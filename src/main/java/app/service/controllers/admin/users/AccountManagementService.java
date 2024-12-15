@@ -1,24 +1,20 @@
-package app.controllers.admin;
+package app.service.controllers.admin.users;
 
 import app.domain.entites.users.Account;
-import app.service.controllers.admin.AccountEditAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/v1/edit-users/")
-public class EditAccountsController {
+@Service
+public class AccountManagementService {
 
     @Autowired
-    private AccountEditAdminService accountService;
+    private AccountService accountService;
 
-    @PostMapping("register/")
-    public ResponseEntity<String> registerNewUser(@RequestBody Account account) {
+    public ResponseEntity<String> registerNewUser(Account account) {
         if (!accountService.existsByUsername(account.getUsername())) {
-            accountService.encodeAccountPassword(account);
             accountService.saveAccount(account);
             return ResponseEntity.ok("Пользователь был успешно добавлен!");
         } else {
@@ -26,10 +22,8 @@ public class EditAccountsController {
         }
     }
 
-    @PutMapping("edit/")
-    public ResponseEntity<String> editUser(@RequestBody Account account) {
+    public ResponseEntity<String> editUser(Account account) {
         if (accountService.existsById(account.getId())) {
-            accountService.encodeAccountPassword(account);
             accountService.saveAccount(account);
             return ResponseEntity.ok("Данные пользователя обновлены!");
         } else {
@@ -37,14 +31,12 @@ public class EditAccountsController {
         }
     }
 
-    @GetMapping("get-all/")
     public List<Account> getAllUsers() {
         return accountService.findAllAccounts();
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteUserById(Long id) {
         accountService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Пользователь был успешно удален!");
     }
 }
