@@ -14,7 +14,7 @@ async function loadProducts() {
                     <td>${product.description}</td>
                     <td>${product.price}</td>
                     <td>${product.quantityInStock}</td>
-                    <td>${product.category}</td>
+                    <td>${product.category.category}</td>
                     <td>
                         <button onclick="editProduct(${product.id})">Редактировать</button>
                         <button onclick="deleteProduct(${product.id})">Удалить</button>
@@ -65,9 +65,7 @@ async function toggleProductForm() {
     });
 }
 
-async function addProduct(event) {
-    const form = document.getElementById('product-form');
-
+async function addProduct() {
     // Собираем данные из формы
     const productData = {
         title: document.getElementById('title').value.trim(),
@@ -140,14 +138,119 @@ async function addProduct(event) {
     }
 }
 
-function editProduct(productId) {
-    //todo
-    alert(`Товар с ID ${productId} успешно отредактирован!`);
+async function editProduct(productId) {
+    document.getElementById('modal-product').style.display = 'block';
+    const response = await fetch(`/api/v1/edit-shop/get/product/${productId}`);
+    const product = await response.json();
+    document.getElementById('edit-product-id').value = product.id;
+    document.getElementById('edit-product-title').value = product.title;
+    document.getElementById('edit-product-description').value = product.description;
+    document.getElementById('edit-product-price').value = product.price;
+    document.getElementById('edit-product-stock').value = product.quantityInStock;
+    document.getElementById('edit-product-category').value = product.category.category;
+
+    const sizesResponse = await fetch(`/api/v1/edit-shop/get-all/clothing-sizes/`);
+    const sizes = await sizesResponse.json();
+
+    const sizesSelect = document.getElementById('edit-product-sizes');
+    sizesSelect.innerHTML = '';
+
+    sizes.forEach(size => {
+        const label = document.createElement("label");
+        label.className = "size-option";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.name = "sizes";
+        input.value = size.size;
+
+        const customCheckbox = document.createElement("span");
+        customCheckbox.className = "custom-checkbox";
+
+        label.appendChild(input);
+        label.appendChild(customCheckbox);
+        label.appendChild(document.createTextNode(` ${size.size}`));
+
+        sizesSelect.appendChild(label);
+    });
 }
 
-function deleteProduct(productId) {
-    //todo
-    alert(`Товар с ID ${productId} успешно удален!`);
+async function saveEditedProduct() {
+    const editedProduct = {
+        id: document.getElementById('edit-product-id').value,
+        title: document.getElementById('edit-product-title').value,
+        description: document.getElementById('edit-product-description').value,
+        price: document.getElementById('edit-product-price').value,
+        quantityInStock: document.getElementById('edit-product-stock').value,
+        category: document.getElementById('edit-product-category').value,
+        sizes: []
+    }
+
+    const sizeCheckboxes = document.querySelectorAll('#edit-product-sizes input[type="checkbox"]:checked');
+    editedProduct.sizes = Array.from(sizeCheckboxes).map(checkbox => checkbox.value);
+
+    if (!editedProduct.title) {
+        alert('Название товара не может быть пустым');
+        return;
+    }
+
+    if (isNaN(editedProduct.price) || editedProduct.price <= 0) {
+        alert('Цена должна быть положительным числом.');
+        return;
+    }
+
+    if (isNaN(editedProduct.quantityInStock) || editedProduct.quantityInStock < 0) {
+        alert('Количество на складе должно быть числом больше или равно нулю.');
+        return;
+    }
+
+    if (!editedProduct.category) {
+        alert('Выберите категорию товара.');
+        return;
+    }
+
+    if (editedProduct.sizes.length === 0) {
+        alert('Выберите хотя бы один размер.');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/v1/edit-shop/update/product/', {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: editedProduct.id,
+                title: editedProduct.title,
+                description: editedProduct.description,
+                price: editedProduct.price,
+                quantityInStock: editedProduct.quantityInStock,
+                category: editedProduct.category,
+                clothingSize: editedProduct.sizes,
+            })
+        });
+        const result = await response.text();
+        alert(result);
+        await loadProducts()
+    } catch (error) {
+        alert(`Произошла ошибка: ${error.message}`);
+    }
+
+    closeModalProduct()
+}
+
+async function deleteProduct(productId) {
+    try {
+        const response = await fetch(`/api/v1/edit-shop/delete/product/${productId}`, {
+            method: 'DELETE'
+        });
+        const result = await response.text();
+        alert (result)
+    } catch (error) {
+        alert(`Произошла ошибка: ${error.message}`);
+    }
+    await loadProducts()
 }
 
 // categories functions
@@ -366,6 +469,10 @@ function closeModalClothingSize() {
 
 function closeModalCategory() {
     document.getElementById('modal-category').style.display = 'none';
+}
+
+function closeModalProduct() {
+    document.getElementById('modal-product').style.display = 'none';
 }
 
 function toggleSizeSelect(hasSize) {

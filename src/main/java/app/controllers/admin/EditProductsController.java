@@ -54,6 +54,11 @@ public class EditProductsController {
         return categoryRepository.findById(id);
     }
 
+    @GetMapping("get/product/{id}")
+    public Optional<Product> getProductById(@PathVariable Long id) {
+        return productRepository.findById(id);
+    }
+
     @PostMapping("add/product/")
     public ResponseEntity<String> addProduct(@RequestBody Product product) {
         log.info("DTO: {}", product.getClothingSize());
@@ -99,13 +104,25 @@ public class EditProductsController {
         }
     }
 
-    @DeleteMapping("delete/clothing-size/{id}")
-    public ResponseEntity<String> deleteClothingSize(@PathVariable Integer id) {
-        if (clothingSizeRepository.existsById(id)) {
-            clothingSizeRepository.deleteById(id);
-            return ResponseEntity.ok("Размер был успешно удален!");
+    @PutMapping("update/product/")
+    public ResponseEntity<String> updateProduct(@RequestBody Product product) {
+        if (productRepository.existsById(product.getId())) {
+            Product previous = productRepository.findById(product.getId()).orElseThrow();
+            product.setCategory(
+                    categoryRepository.findByCategory(
+                            product.getCategory().getCategory()
+                    )
+            );
+            product.setClothingSize(
+                    product.getClothingSize().stream()
+                            .map(size -> clothingSizeRepository.findBySize(size.getSize()))
+                            .collect(Collectors.toSet())
+            );
+            product.setProductPhotoLinks(previous.getProductPhotoLinks());
+            productRepository.save(product);
+            return ResponseEntity.ok("Товар был успешно обновлен!");
         } else {
-            return ResponseEntity.ok("ID не найден");
+            return ResponseEntity.ok("Товар не был найден");
         }
     }
 
@@ -129,13 +146,33 @@ public class EditProductsController {
         }
     }
 
+    @DeleteMapping("delete/product/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return ResponseEntity.ok("Товар был успешно удален!");
+        } else {
+            return ResponseEntity.ok("Товар не найден");
+        }
+    }
+
     @DeleteMapping("delete/category/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
             return ResponseEntity.ok("Категория была успешно удалена!");
         } else {
-            return ResponseEntity.ok("ID не найден");
+            return ResponseEntity.ok("Категория не была найдена");
+        }
+    }
+
+    @DeleteMapping("delete/clothing-size/{id}")
+    public ResponseEntity<String> deleteClothingSize(@PathVariable Integer id) {
+        if (clothingSizeRepository.existsById(id)) {
+            clothingSizeRepository.deleteById(id);
+            return ResponseEntity.ok("Размер был успешно удален!");
+        } else {
+            return ResponseEntity.ok("Размер не был найден");
         }
     }
 }
