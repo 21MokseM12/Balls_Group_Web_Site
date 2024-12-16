@@ -1,20 +1,13 @@
-package app.controllers.admin;
+package app.controllers.admin.pages;
 
-import app.domain.entites.users.Account;
-import app.repository.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("api/v1/")
 public class AdminPageController {
-
-    @Autowired
-    private AccountRepository accountRepository;
 
     @GetMapping
     public String adminPanel() {
@@ -23,9 +16,7 @@ public class AdminPageController {
 
     @GetMapping("edit-users/")
     @PreAuthorize("hasAuthority('SYSTEM_ADMIN')")
-    public String addUserPanel(Model model) {
-        Iterable<Account> accounts = accountRepository.findAll();
-        model.addAttribute("accounts", accounts);
+    public String addUserPanel() {
         return "admin_edit_users";
     }
 
