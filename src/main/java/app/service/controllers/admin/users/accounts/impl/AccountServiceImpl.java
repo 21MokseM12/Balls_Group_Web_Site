@@ -1,13 +1,14 @@
-package app.service.controllers.admin.users.impl;
+package app.service.controllers.admin.users.accounts.impl;
 
 import app.domain.entites.users.Account;
 import app.repository.AccountRepository;
-import app.service.controllers.admin.users.AccountService;
+import app.service.controllers.admin.users.accounts.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class AccountServiceImpl implements AccountService {
@@ -18,21 +19,28 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Override
+    public List<Account> findAll() {
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public Optional<Account> findById(Long id) {
+        return accountRepository.findById(id);
+    }
+
+    @Override
+    public void save(Account account) {
+        encodeAccountPassword(account);
+        accountRepository.save(account);
+    }
+
     public boolean existsByUsername(String username) {
         return accountRepository.existsByUsername(username);
     }
 
     public boolean existsById(Long id) {
         return accountRepository.existsById(id);
-    }
-
-    public void saveAccount(Account account) {
-        encodeAccountPassword(account);
-        accountRepository.save(account);
-    }
-
-    public List<Account> findAllAccounts() {
-        return accountRepository.findAll();
     }
 
     public void deleteById(Long id) {

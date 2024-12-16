@@ -1,5 +1,25 @@
 package app.domain.entites.users;
 
-public enum Role {
-    SYSTEM_ADMIN, MERCH_MANAGER, CONCERT_MANAGER, ALBUMS_MANAGER
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(schema = "users", name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private String role;
+
+    public Role(String role) {
+        this.role = role;
+    }
 }
+//    SYSTEM_ADMIN, MERCH_MANAGER, CONCERT_MANAGER, ALBUMS_MANAGER

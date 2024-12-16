@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class AccountDetails implements UserDetails {
 
-    private Account account;
+    private final Account account;
 
     public AccountDetails(Account account) {
         this.account = account;
@@ -21,7 +21,7 @@ public class AccountDetails implements UserDetails {
         return account
                 .getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.toString()))
+                .map(role -> new SimpleGrantedAuthority(role.getRole()))
                 .collect(Collectors.toSet());
     }
 
