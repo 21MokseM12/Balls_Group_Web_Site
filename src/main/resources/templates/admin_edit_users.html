@@ -3,109 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>User Admin Panel</title>
+    <link rel="stylesheet" href="/css/styles_admin_edit.css">
     <link rel="stylesheet" href="/css/styles_admin_edit_users.css">
 </head>
 <body>
 <header>
-    <h1>Admin панель</h1>
+    <h1>Панель пользователей</h1>
 </header>
-<main>
-    <!-- Registration Form -->
-    <form id="register-form">
-        <h2>Регистрация нового пользователя</h2>
-        <label for="username">Имя пользователя</label>
-        <input type="text" id="username" name="username" required>
+<div class="container">
+    <div class="actions">
+        <button onclick="loadUsers()">Показать всех пользователей</button>
+        <button onclick="loadRoles()">Показать все роли</button>
+        <button onclick="toggleAddRoleForm()">Добавить роль</button>
+        <button onclick="toggleRegisterUserForm()">Добавить пользователя</button>
+    </div>
 
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" required>
+    <table id="users-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Никнейм</th>
+            <th>Роли</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
-        <label for="register-role-admin">Роли</label>
-        <div class="roles-container">
-            <div class="role-item">
-                <input type="checkbox" id="register-role-admin" name="roles" value="SYSTEM_ADMIN">
-                <label for="register-role-admin">Администратор</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="register-role-merch" name="roles" value="MERCH_MANAGER">
-                <label for="register-role-merch">Менеджер магазина</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="register-role-concert" name="roles" value="CONCERT_MANAGER">
-                <label for="register-role-concert">Концерт-директор</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="register-role-albums" name="roles" value="ALBUMS_MANAGER">
-                <label for="register-role-albums">Менеджер альбомов</label>
-            </div>
+    <table id="roles-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Роль</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="form-container" id="user-form" style="display: none;">
+        <h2>Добавить пользователя</h2>
+
+        <label for="username">Никнейм: </label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Пароль: </label>
+        <input type="text" id="password" name="password">
+
+        <div id="rolesSelectContainer">
+            <p>Выберите роли для пользователя:</p>
+            <div id="roles-options"></div>
         </div>
+        <button onclick="registerUser()">Регистрация</button>
+    </div>
 
-        <button type="submit">Регистрация</button>
-    </form>
+    <div class="form-container" id="roles-form" style="display: none;">
+        <h2>Добавить роль</h2>
 
-    <!-- Edit User Form -->
-    <form id="edit-form">
-        <h2>Редактирование пользователя</h2>
-        <label for="edit-user-id">User ID</label>
-        <input type="text" id="edit-user-id" name="edit-user-id" required>
+        <label for="role">Роль: </label>
+        <input type="text" id="role" name="role">
 
-        <label for="edit-username">Новое имя пользователя</label>
-        <input type="text" id="edit-username" name="edit-username">
+        <button onclick="addRole()">Добавить</button>
+    </div>
 
-        <label for="edit-password">Новый пароль</label>
-        <input type="password" id="edit-password" name="edit-password">
+    <div id="modal-user" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalUser()">&times;</span>
+            <h2 id="modal-title-user">Редактирование пользователя</h2>
+            <form id="edit-user-form">
+                <label for="edit-user-username">ID:</label>
+                <input type="text" id="edit-user-id" name="id" readonly>
 
-        <label for="edit-role-admin">Роли</label>
-        <div class="roles-container">
-            <div class="role-item">
-                <input type="checkbox" id="edit-role-admin" name="edit-roles" value="SYSTEM_ADMIN">
-                <label for="edit-role-admin">Администратор</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="edit-role-merch" name="edit-roles" value="MERCH_MANAGER">
-                <label for="edit-role-merch">Менеджер магазина</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="edit-role-concert" name="edit-roles" value="CONCERT_MANAGER">
-                <label for="edit-role-concert">Концерт-директор</label>
-            </div>
-            <div class="role-item">
-                <input type="checkbox" id="edit-role-albums" name="edit-roles" value="ALBUMS_MANAGER">
-                <label for="edit-role-albums">Менеджер альбомов</label>
-            </div>
+                <label for="edit-user-username">Никнейм:</label>
+                <input type="text" id="edit-user-username" name="username" required>
+
+                <label for="edit-user-password">Новый пароль:</label>
+                <input type="text" id="edit-user-password" name="password" required>
+
+                <label for="edit-user-roles">Роли:</label>
+                <div id="edit-user-roles"></div>
+
+                <button type="button" onclick="saveEditedUser()">Сохранить</button>
+            </form>
         </div>
+    </div>
 
-        <button type="submit">Обновить</button>
-    </form>
+    <div id="modal-role" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalRole()">&times;</span>
+            <h2 id="modal-title-role">Редактирование роли</h2>
+            <form id="edit-role-form">
+                <label for="edit-role-value">ID:</label>
+                <input type="text" id="edit-role-id" name="id" readonly>
 
-    <!-- View All Users -->
-    <section id="user-list">
-        <h2>All Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Roles</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr th:each="account : ${accounts}">
-                    <td th:text="${account.id}"></td>
-                    <td th:text="${account.username}"></td>
-                    <td th:text="${account.roles}"></td>
-                    <td>
-                        <img src="/img/edit_users/trash-icon.png"
-                             alt="Delete"
-                             class="delete-icon"
-                             th:data-id="${account.id}">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+                <label for="edit-role-value">Новая роль:</label>
+                <input type="text" id="edit-role-value" name="role" required>
 
-    <script src="/js/script_admin_edit_users.js"></script>
-</main>
+                <button type="button" onclick="saveEditedRole()">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+<script src="/js/script_admin_edit_users.js"></script>
 </html>

@@ -1,109 +1,109 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-}
-form {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 2rem;
-    margin: 1rem;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-form h2 {
-    margin-top: 0;
-}
-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-form input, form select, form button {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-form button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-form button:hover {
-    background-color: #555;
-}
-table {
-    width: 100%;
-    max-width: 800px;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-table th, table td {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-table th {
-    background-color: #333;
-    color: #fff;
+/* Селект ролей */
+#rolesSelectContainer {
+    margin-top: 15px;
 }
 
-.roles-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 10px 0;
-    padding: 10px;
+#rolesSelectContainer label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+#rolesSelectContainer select {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #fefefe;
-}
-.role-item {
-    display: flex;
-    align-items: center;
-    background-color: #f9f9f9;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.role-item:hover {
-    background-color: #e9e9e9;
-    transform: scale(1.05);
-}
-.role-item input {
-    margin-right: 8px;
-    cursor: pointer;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    color: #555;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.delete-icon {
+#rolesSelectContainer select:focus {
+    border-color: #0288d1;
+    outline: none;
+    box-shadow: 0 0 8px rgba(2, 136, 209, 0.3);
+}
+
+/* Контейнер для выбора размеров */
+#rolesSelectContainer {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок внутри контейнера */
+#rolesSelectContainer p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Контейнер с опциями размеров */
+#roles-options {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет переносить элементы на новую строку */
+    gap: 10px; /* Отступы между элементами */
+}
+
+/* Индивидуальные опции */
+.role-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.role-option:hover {
+    background-color: #f0f8ff;
+    border-color: #0288d1;
+    box-shadow: 0 2px 5px rgba(2, 136, 209, 0.2);
+}
+
+/* Скрытие стандартного чекбокса */
+.role-option input[type="checkbox"] {
+    display: none;
+}
+
+/* Кастомный чекбокс */
+.custom-checkbox {
     width: 20px;
     height: 20px;
-    margin-left: 10px;
-    transition: transform 0.2s ease;
+    margin-right: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.delete-icon:hover {
-    transform: scale(1.2);
-    opacity: 0.7;
+
+/* Иконка внутри кастомного чекбокса */
+.custom-checkbox::after {
+    content: '✔';
+    font-size: 14px;
+    color: #fff;
+    display: none;
+}
+
+/* Состояние "выбрано" */
+.role-option input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: #0288d1;
+    border-color: #0288d1;
+}
+
+.role-option input[type="checkbox"]:checked + .custom-checkbox::after {
+    display: block;
 }
