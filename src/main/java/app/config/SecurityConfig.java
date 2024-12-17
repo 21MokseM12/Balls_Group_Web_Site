@@ -32,7 +32,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/main/**").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                        .requestMatchers("/api/v1/**").authenticated()
+
+                        .requestMatchers("/api/v1/edit-concerts/get-all/**").permitAll()
+                        .requestMatchers("/api/v1/edit-concerts/get/**").permitAll()
+                        .requestMatchers("/api/v1/edit-concerts/add/**").authenticated()
+                        .requestMatchers("/api/v1/edit-concerts/delete/**").authenticated()
+                        .requestMatchers("/api/v1/edit-concerts/update/**").authenticated()
+
+                        .requestMatchers("/api/v1/edit-albums/get-all/").permitAll()
+                        .requestMatchers("/api/v1/edit-albums/get/").permitAll()
+                        .requestMatchers("/api/v1/edit-albums/add/**").authenticated()
+                        .requestMatchers("/api/v1/edit-albums/delete/**").authenticated()
+                        .requestMatchers("/api/v1/edit-albums/update/**").authenticated()
+
+                        .requestMatchers("/api/v1/edit-users/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/**").authenticated()
+
+                        .requestMatchers("/api/v1/").authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
