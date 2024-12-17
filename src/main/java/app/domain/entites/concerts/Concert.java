@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -22,12 +21,9 @@ public class Concert {
 
     private String concertVenue;
 
-    private Date date;
+    private LocalDate date;
 
     private String ticketsLink;
 
-    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(schema = "concerts", name = "meeting_links", joinColumns = @JoinColumn(name = "concert_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<String> meetingLink;
+    private String meetingLink;
 }
