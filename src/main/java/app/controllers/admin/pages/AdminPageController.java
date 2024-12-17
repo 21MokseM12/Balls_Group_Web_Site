@@ -20,20 +20,19 @@ public class AdminPageController {
         return "admin_edit_users";
     }
 
-    @GetMapping("/edit-concerts")
+    @GetMapping("edit-concerts/")
     @PreAuthorize("hasAuthority('CONCERT_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
     public String editConcertsPanel() {
-        //todo
-        return "";
+        return "admin_edit_concerts";
     }
 
-    @GetMapping("/edit-shop")
+    @GetMapping("edit-shop/")
     @PreAuthorize("hasAuthority('MERCH_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
     public String editShopPanel() {
         return "admin_edit_products";
     }
 
-    @GetMapping("/edit-albums")
+    @GetMapping("edit-albums/")
     @PreAuthorize("hasAuthority('ALBUMS_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
     public String editAlbumsPanel() {
         //todo

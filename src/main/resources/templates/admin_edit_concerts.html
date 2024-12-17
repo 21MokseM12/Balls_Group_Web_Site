@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert Admin Panel</title>
+    <link rel="stylesheet" href="/css/styles_admin_edit.css">
+</head>
+<body>
+<header>
+    <h1>Панель концертов</h1>
+</header>
+<div class="container">
+    <div class="actions">
+        <button onclick="loadConcerts()">Показать все концерты</button>
+        <button onclick="toggleRegisterConcertForm()">Добавить концерт</button>
+    </div>
+
+    <table id="concert-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Город</th>
+            <th>Описание</th>
+            <th>Концертная площадка</th>
+            <th>Дата</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="form-container" id="concert-form" style="display: none;">
+        <h2>Добавить концерт</h2>
+
+        <label for="city">Город: </label>
+        <input type="text" id="city" name="city">
+
+        <label for="description">Описание: </label>
+        <input type="text" id="description" name="description">
+
+        <label for="venue">Площадка: </label>
+        <input type="text" id="venue" name="venue">
+
+        <label for="date">Дата: </label>
+        <input type="date" id="date" name="date">
+
+        <label for="tickets">Ссылка на билеты: </label>
+        <input type="text" id="tickets" name="tickets">
+
+        <label for="meeting">Ссылка на встречу: </label>
+        <input type="text" id="meeting" name="meeting">
+        <button onclick="addConcert()">Добавить</button>
+    </div>
+
+    <div id="modal-concert" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalConcert()">&times;</span>
+            <h2 id="modal-title-concert">Редактирование концерта</h2>
+            <form id="edit-concert-form">
+                <label for="edit-concert-city">ID:</label>
+                <input type="text" id="edit-concert-id" name="id" readonly>
+
+                <label for="edit-concert-city">Город:</label>
+                <input type="text" id="edit-concert-city" name="city" required>
+
+                <label for="edit-concert-description">Новое описание:</label>
+                <input type="text" id="edit-concert-description" name="description" required>
+
+                <label for="edit-concert-venue">Новая площадка:</label>
+                <input type="text" id="edit-concert-venue" name="venue" required>
+
+                <label for="edit-concert-date">Новая дата:</label>
+                <input type="date" id="edit-concert-date" name="date" required>
+
+                <label for="edit-concert-tickets">Новая ссылка на билеты:</label>
+                <input type="text" id="edit-concert-tickets" name="tickets" required>
+
+                <label for="edit-concert-meeting">Новая ссылка на встречу:</label>
+                <input type="text" id="edit-concert-meeting" name="meeting" required>
+
+                <button type="button" onclick="saveEditedConcert()">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/script_admin_edit_concerts.js"></script>
+</html>

@@ -37,28 +37,13 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: date
-                  type: timestamp without time zone
+                  type: date
                   constraints:
                     nullable: false
               - column:
                   name: tickets_link
                   type: text
                   constraints:
-                    nullable: false
-  - changeSet:
-      id: create-table-meeting-links
-      author: moksem
-      changes:
-        - createTable:
-            tableName: meeting_links
-            schemaName: concerts
-            columns:
-              - column:
-                  name: concert_id
-                  type: integer
-                  constraints:
-                    foreignKeyName: concert_id_fk
-                    references: concerts.concert(id)
                     nullable: false
               - column:
                   name: meeting_link
