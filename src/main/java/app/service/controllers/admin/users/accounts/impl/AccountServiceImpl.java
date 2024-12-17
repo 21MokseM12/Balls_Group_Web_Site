@@ -3,8 +3,8 @@ package app.service.controllers.admin.users.accounts.impl;
 import app.domain.entites.users.Account;
 import app.repository.AccountRepository;
 import app.service.controllers.admin.users.accounts.AccountService;
+import app.service.controllers.admin.users.accounts.utils.AccountEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private AccountEncoder accountEncoder;
 
     @Override
     public List<Account> findAll() {
@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void save(Account account) {
-        encodeAccountPassword(account);
+        accountEncoder.encodePassword(account);
         accountRepository.save(account);
     }
 
@@ -45,9 +45,5 @@ public class AccountServiceImpl implements AccountService {
 
     public void deleteById(Long id) {
         accountRepository.deleteById(id);
-    }
-
-    private void encodeAccountPassword(Account account) {
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
     }
 }
