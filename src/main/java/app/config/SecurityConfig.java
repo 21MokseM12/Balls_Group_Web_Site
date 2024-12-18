@@ -53,6 +53,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/edit-shop/delete/**").authenticated()
                         .requestMatchers("/api/v1/edit-shop/update/**").authenticated()
 
+                        .requestMatchers("/api/v1/s3bucket-storage/**").authenticated()
+
                         .requestMatchers("/api/v1/").authenticated()
                         .anyRequest().permitAll()
                 )
