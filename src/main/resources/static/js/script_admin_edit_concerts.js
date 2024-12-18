@@ -25,14 +25,14 @@ async function loadConcerts() {
 async function editConcert(concertId) {
     document.getElementById('modal-concert').style.display = 'block';
     const response = await fetch(`/api/v1/edit-concerts/get/concert/${concertId}`);
-    const user = await response.json();
-    document.getElementById('edit-concert-id').value = user.id;
-    document.getElementById('edit-concert-city').value = user.city;
-    document.getElementById('edit-concert-description').value = user.description;
-    document.getElementById('edit-concert-venue').value = user.concertVenue;
-    document.getElementById('edit-concert-date').value = user.date;
-    document.getElementById('edit-concert-tickets').value = user.ticketsLink;
-    document.getElementById('edit-concert-meeting').value = user.meetingLink;
+    const concert = await response.json();
+    document.getElementById('edit-concert-id').value = concert.id;
+    document.getElementById('edit-concert-city').value = concert.city;
+    document.getElementById('edit-concert-description').value = concert.description;
+    document.getElementById('edit-concert-venue').value = concert.concertVenue;
+    document.getElementById('edit-concert-date').value = concert.date;
+    document.getElementById('edit-concert-tickets').value = concert.ticketsLink;
+    document.getElementById('edit-concert-meeting').value = concert.meetingLink;
 }
 
 async function saveEditedConcert() {
