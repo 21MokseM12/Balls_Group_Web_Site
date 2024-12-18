@@ -1,8 +1,8 @@
 package app.service.controllers.admin.shop.product;
 
-import com.amazonaws.services.appstream.model.EntitlementNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
-public class ProductException extends EntitlementNotFoundException {
+public class ProductException extends EntityNotFoundException {
 
     public ProductException(String message) {
         super(message);

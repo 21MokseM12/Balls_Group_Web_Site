@@ -1,8 +1,8 @@
 package app.service.controllers.admin.shop.clothing;
 
-import com.amazonaws.services.appstream.model.EntitlementNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
-public class ClothingSizeException extends EntitlementNotFoundException {
+public class ClothingSizeException extends EntityNotFoundException {
 
     public ClothingSizeException(String message) {
         super(message);
