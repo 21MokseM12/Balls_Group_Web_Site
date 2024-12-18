@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Admin Panel</title>
+    <link rel="stylesheet" href="/css/styles_admin_edit.css">
+</head>
+<body>
+<header>
+    <h1>Панель дискографии</h1>
+</header>
+<div class="container">
+    <div class="actions">
+        <button onclick="loadAlbums()">Показать все альбомы</button>
+        <button onclick="toggleRegisterAlbumForm()">Добавить альбом</button>
+    </div>
+
+    <table id="album-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="form-container" id="album-form" style="display: none;">
+        <h2>Добавить альбом</h2>
+
+        <label for="title">Название: </label>
+        <input type="text" id="title" name="title">
+
+        <label for="description">Описание: </label>
+        <input type="text" id="description" name="description">
+
+        <label for="listen">Ссылка на альбом в медиа: </label>
+        <input type="text" id="listen" name="listen">
+
+        <label for="logo">Обложка альбома:</label>
+        <input type="file" id="logo" name="logo">
+
+        <button onclick="addAlbum()">Добавить</button>
+    </div>
+
+    <div id="modal-album" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModalAlbum()">&times;</span>
+            <h2 id="modal-title-album">Редактирование альбома</h2>
+            <form id="edit-album-form">
+                <label for="edit-album-title">ID:</label>
+                <input type="text" id="edit-album-id" name="id" readonly>
+
+                <label for="edit-album-title">Название:</label>
+                <input type="text" id="edit-album-title" name="title" required>
+
+                <label for="edit-album-description">Новое описание:</label>
+                <input type="text" id="edit-album-description" name="description" required>
+
+                <label for="edit-album-listen">Новая ссылка на медиа:</label>
+                <input type="text" id="edit-album-listen" name="listen" required>
+
+                <label for="edit-album-logo">Новая обложка альбома:</label>
+                <input type="file" id="edit-album-logo" name="logo">
+
+                <button type="button" onclick="saveEditedAlbum()">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/script_admin_edit_music.js"></script>
+</html>
