@@ -39,14 +39,19 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/edit-concerts/delete/**").authenticated()
                         .requestMatchers("/api/v1/edit-concerts/update/**").authenticated()
 
-                        .requestMatchers("/api/v1/edit-albums/get-all/").permitAll()
-                        .requestMatchers("/api/v1/edit-albums/get/").permitAll()
-                        .requestMatchers("/api/v1/edit-albums/add/**").authenticated()
-                        .requestMatchers("/api/v1/edit-albums/delete/**").authenticated()
-                        .requestMatchers("/api/v1/edit-albums/update/**").authenticated()
+                        .requestMatchers("/api/v1/edit-music/get-all/**").permitAll()
+                        .requestMatchers("/api/v1/edit-music/get/**").permitAll()
+                        .requestMatchers("/api/v1/edit-music/add/**").authenticated()
+                        .requestMatchers("/api/v1/edit-music/delete/**").authenticated()
+                        .requestMatchers("/api/v1/edit-music/update/**").authenticated()
 
                         .requestMatchers("/api/v1/edit-users/**").authenticated()
-                        .requestMatchers("/api/v1/edit-shop/**").authenticated()
+
+                        .requestMatchers("/api/v1/edit-shop/get-all/**").permitAll()
+                        .requestMatchers("/api/v1/edit-shop/get/**").permitAll()
+                        .requestMatchers("/api/v1/edit-shop/add/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/delete/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/update/**").authenticated()
 
                         .requestMatchers("/api/v1/").authenticated()
                         .anyRequest().permitAll()

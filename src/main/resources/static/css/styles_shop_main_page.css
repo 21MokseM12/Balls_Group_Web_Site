@@ -17,29 +17,28 @@ header {
     z-index: 1000;
 }
 
-/* Стили для меню */
-header nav {
-    flex-grow: 1; /* Занимает оставшееся пространство */
+header .category-section {
     text-align: center; /* Центрирование текста */
-}
-
-header nav ul {
+    display: inline-flex; /* Горизонтальное выравнивание меню */
+    gap: 30px; /* Расстояние между пунктами меню */
     list-style: none; /* Убираем маркеры списка */
     padding: 0;
     margin: 0;
-    display: inline-flex; /* Горизонтальное выравнивание меню */
-    gap: 30px; /* Расстояние между пунктами меню */
 }
 
-header nav ul li a {
+header .category-section p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header .category-value a {
     text-decoration: none; /* Убираем подчеркивание */
     color: #fff; /* Белый цвет текста */
     font-size: 1.2rem; /* Размер шрифта */
     transition: color 0.3s; /* Плавное изменение цвета при наведении */
 }
 
-header nav ul li a:hover {
-    color: #74c8b0; /* Цвет при наведении */
+header .category-value a:hover {
+    color: #74c8b0;  /* Цвет при наведении *!*/
 }
 
 .logo-container img {
