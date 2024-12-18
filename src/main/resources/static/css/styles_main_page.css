@@ -152,9 +152,50 @@ section {
     text-align: center;
 }
 
-.about-section, .music-section, .tour-section, .contacts-section {
+.music-section, .tour-section, .contacts-section {
     background: #222;
     margin-bottom: 20px;
+}
+
+.about-section {
+    background: #222;
+    margin-bottom: 20px;
+}
+
+.about-section h2 {
+    font-size: 220%;
+}
+
+.about-section p {
+    font-size: 200%;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.about {
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.about-item {
+    flex: 0 0 33.33%;
+    text-align: center;
+    padding: 10px;
+}
+
+.about-item img {
+    height: 80%;
+    max-width: 100%;
+    border-radius: 40%;
 }
 
 .track-list {
