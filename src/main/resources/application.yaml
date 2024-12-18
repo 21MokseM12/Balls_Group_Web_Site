@@ -9,3 +9,12 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
+  cloud:
+    aws:
+      credentials:
+        access-key: YCAJE1obdu1NEacOyYZxdSCtx
+        secret-key: YCMxiQOHHFJ6mFCzeSM2oxM0wNVdgCobdCXjyv1_
+      region:
+        static: ru-central1
+    s3:
+      endpoint: https://storage.yandexcloud.net
