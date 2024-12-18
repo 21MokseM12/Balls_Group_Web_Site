@@ -32,10 +32,9 @@ public class AdminPageController {
         return "admin_edit_products";
     }
 
-    @GetMapping("edit-albums/")
+    @GetMapping("edit-music/")
     @PreAuthorize("hasAuthority('ALBUMS_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
     public String editAlbumsPanel() {
-        //todo
-        return "";
+        return "admin_edit_music";
     }
 }
