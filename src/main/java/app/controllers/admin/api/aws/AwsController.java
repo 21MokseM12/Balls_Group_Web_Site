@@ -67,7 +67,7 @@ public class AwsController {
     }
 
     // Endpoint to delete a file from a bucket
-    @DeleteMapping("{bucketName}/{fileName}")
+    @DeleteMapping("{bucketName}/delete/{fileName}")
     public ResponseEntity<?> deleteFile(
             @PathVariable("bucketName") String bucketName,
             @PathVariable("fileName") String fileName

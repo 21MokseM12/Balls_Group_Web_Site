@@ -22,8 +22,15 @@ async function loadAlbums() {
 
 async function editAlbum(albumId) {
     document.getElementById('modal-album').style.display = 'block';
+
     const response = await fetch(`/api/v1/edit-music/get/album/${albumId}`);
     const album = await response.json();
+
+    //todo сделать вывод файла на фронт
+
+    // const s3Response = fetch(`/api/v1/s3bucket-storage/balls-group-storage-music/download/${album.logoFileName}`)
+    // const albumLogo = await s3Response.blob();
+
     document.getElementById('edit-album-id').value = album.id;
     document.getElementById('edit-album-title').value = album.title;
     document.getElementById('edit-album-description').value = album.description;
@@ -38,8 +45,8 @@ async function saveEditedAlbum() {
         listenLink: document.getElementById('edit-album-listen').value
     }
 
-    //todo поправить редактирование файла
     const formData = new FormData();
+    //todo поправить редактирование файла
     const fileInput = document.querySelector('input[type="file"]');
     const file = fileInput.files[0];
 
@@ -95,6 +102,17 @@ async function saveEditedAlbum() {
 
 async function deleteAlbum(albumId) {
     try {
+
+        const getResponse = await fetch(`/api/v1/edit-music/get/album/${albumId}`, {
+            method: 'GET'
+        });
+        const album = await getResponse.json();
+
+        const s3Response = fetch(`/api/v1/s3bucket-storage/balls-group-storage-music/delete/${album.logoFileName}`, {
+            method: 'DELETE'
+        })
+        await s3Response;
+
         const response = await fetch(`/api/v1/edit-music/delete/album/${albumId}`, {
             method: 'DELETE'
         });
@@ -141,28 +159,33 @@ async function addAlbum() {
     formData.append('file', file);
 
     try {
-        const s3response = fetch('/api/v1/s3bucket-storage/balls-group-storage-music/upload/', {
+        const s3response = await fetch('/api/v1/s3bucket-storage/balls-group-storage-music/upload/', {
             method: 'POST',
             body: formData
         })
 
-        const response = await fetch('/api/v1/edit-music/add/album/', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: albumData.title,
-                description: albumData.description,
-                logoFile: albumData.logoFile,
-                listenLink: albumData.listenLink,
-                logoFileName: file.name
-            })
-        });
+        if (s3response.ok) {
+            const response = await fetch('/api/v1/edit-music/add/album/', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: albumData.title,
+                    description: albumData.description,
+                    logoFile: albumData.logoFile,
+                    listenLink: albumData.listenLink,
+                    logoFileName: file.name
+                })
+            });
 
-        await s3response;
-        const result = await response.text();
-        alert(result);
+            await s3response;
+            const result = await response.text();
+            alert(result);
+        } else {
+            const result = await s3response.text();
+            alert(result);
+        }
         await loadAlbums()
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
