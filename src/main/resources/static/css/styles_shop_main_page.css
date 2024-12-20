@@ -100,7 +100,7 @@ header .category-value a:hover {
 main {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 /*Стили карусели*/

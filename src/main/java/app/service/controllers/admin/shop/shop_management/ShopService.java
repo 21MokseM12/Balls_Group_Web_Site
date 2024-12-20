@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ShopService {
+
     Optional<Product> findProductById(Long id);
 
     Optional<Category> findCategoryById(Long id);
@@ -38,4 +39,6 @@ public interface ShopService {
     ResponseEntity<String> updateCategory(Category category);
 
     ResponseEntity<String> updateClothingSize(ClothingSize size);
+
+    List<Product> findAllProductsByCategory(Long categoryId);
 }

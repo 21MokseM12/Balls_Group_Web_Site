@@ -1,5 +1,6 @@
 package app.service.controllers.admin.shop.product;
 
+import app.domain.entites.shop.Category;
 import app.domain.entites.shop.Product;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ProductService {
     void save(Product product);
 
     boolean existsByTitle(String title);
+
+    List<Product> findAllByCategory(Category category);
 }

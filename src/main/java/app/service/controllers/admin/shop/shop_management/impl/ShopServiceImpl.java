@@ -101,4 +101,9 @@ public class ShopServiceImpl implements ShopService {
     public ResponseEntity<String> updateClothingSize(ClothingSize size) {
         return clothingSizeService.updateClothingSize(size);
     }
+
+    @Override
+    public List<Product> findAllProductsByCategory(Long categoryId) {
+        return productService.findAllProductsByCategory(categoryId);
+    }
 }

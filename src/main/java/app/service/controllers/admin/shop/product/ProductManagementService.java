@@ -1,5 +1,6 @@
 package app.service.controllers.admin.shop.product;
 
+import app.domain.entites.shop.Category;
 import app.domain.entites.shop.Product;
 import app.service.controllers.admin.shop.category.CategoryService;
 import app.service.controllers.admin.shop.clothing.ClothingSizeService;
@@ -73,5 +74,10 @@ public class ProductManagementService {
         } else {
             return ResponseEntity.ok("Товар не найден");
         }
+    }
+
+    public List<Product> findAllProductsByCategory(Long categoryId) {
+        Category category = categoryService.findById(categoryId);
+        return productService.findAllByCategory(category);
     }
 }

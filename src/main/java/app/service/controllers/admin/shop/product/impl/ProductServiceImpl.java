@@ -1,5 +1,6 @@
 package app.service.controllers.admin.shop.product.impl;
 
+import app.domain.entites.shop.Category;
 import app.domain.entites.shop.Product;
 import app.repository.shop.ProductRepository;
 import app.service.controllers.admin.shop.product.ProductException;
@@ -48,5 +49,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean existsByTitle(String title) {
         return productRepository.existsByTitle(title);
+    }
+
+    @Override
+    public List<Product> findAllByCategory(Category category) {
+        return productRepository.findAllByCategory(category);
     }
 }
