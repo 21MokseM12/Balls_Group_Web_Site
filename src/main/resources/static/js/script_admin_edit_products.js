@@ -1,4 +1,5 @@
 // products functions
+//todo добавить размеры
 async function loadProducts() {
     const response = await fetch('/api/v1/edit-shop/get-all/products/');
     const products = await response.json();
@@ -114,25 +115,47 @@ async function addProduct() {
         return;
     }
 
+    if (productData.photos.length === 0) {
+        alert('Добавьте хотя бы одну фотографию');
+        return;
+    }
+
+    const formData = new FormData();
+    productData.photos.forEach(photo => {
+        formData.append('files', photo);
+    });
+
     try {
-        const response = await fetch('/api/v1/edit-shop/add/product/', {
+        const s3Response = await fetch('/api/v1/s3bucket-storage/nikonshop-s3-database/upload-all/', {
             method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                title: productData.title,
-                description: productData.description,
-                price: productData.price,
-                quantityInStock: productData.quantityInStock,
-                category: productData.category,
-                clothingSize: productData.sizes,
-                productPhotoLinks: productData.photos
-            })
-        });
-        const result = await response.text();
-        alert(result);
-        await loadProducts()
+            body: formData
+        })
+        await s3Response;
+
+        if (s3Response.ok) {
+            try {
+                const response = await fetch('/api/v1/edit-shop/add/product/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: productData.title,
+                        description: productData.description,
+                        price: productData.price,
+                        quantityInStock: productData.quantityInStock,
+                        category: productData.category,
+                        clothingSize: productData.sizes,
+                        productPhotoLinks: Array.from(productData.photos).map(photo => photo.name)
+                    })
+                });
+                const result = await response.text();
+                alert(result);
+                await loadProducts()
+            } catch (error) {
+                alert(`Произошла ошибка: ${error.message}`);
+            }
+        }
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
     }
@@ -153,28 +176,37 @@ async function editProduct(productId) {
     const sizes = await sizesResponse.json();
 
     const sizesSelect = document.getElementById('edit-product-sizes');
-    sizesSelect.innerHTML = '';
 
-    sizes.forEach(size => {
-        const label = document.createElement("label");
-        label.className = "size-option";
+    if (sizes.length === 0 || !sizes) {
+        const label = document.querySelector('label[for="edit-product-sizes"]');
+        if (label) {
+            label.style.display = 'none';
+        }
+    } else {
+        sizesSelect.innerHTML = '';
 
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.name = "sizes";
-        input.value = size.size;
+        sizes.forEach(size => {
+            const label = document.createElement("label");
+            label.className = "size-option";
 
-        const customCheckbox = document.createElement("span");
-        customCheckbox.className = "custom-checkbox";
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = "sizes";
+            input.value = size.size;
 
-        label.appendChild(input);
-        label.appendChild(customCheckbox);
-        label.appendChild(document.createTextNode(` ${size.size}`));
+            const customCheckbox = document.createElement("span");
+            customCheckbox.className = "custom-checkbox";
 
-        sizesSelect.appendChild(label);
-    });
+            label.appendChild(input);
+            label.appendChild(customCheckbox);
+            label.appendChild(document.createTextNode(` ${size.size}`));
+
+            sizesSelect.appendChild(label);
+        });
+    }
 }
 
+//todo поправить редактирование фотографий: при редактировании в бд фото не изменяются
 async function saveEditedProduct() {
     const editedProduct = {
         id: document.getElementById('edit-product-id').value,
@@ -183,11 +215,15 @@ async function saveEditedProduct() {
         price: document.getElementById('edit-product-price').value,
         quantityInStock: document.getElementById('edit-product-stock').value,
         category: document.getElementById('edit-product-category').value,
-        sizes: []
+        sizes: [],
+        photos: []
     }
 
     const sizeCheckboxes = document.querySelectorAll('#edit-product-sizes input[type="checkbox"]:checked');
     editedProduct.sizes = Array.from(sizeCheckboxes).map(checkbox => checkbox.value);
+
+    const photosInput = document.getElementById('edit-product-photos');
+    editedProduct.photos = Array.from(photosInput.files);
 
     if (!editedProduct.title) {
         alert('Название товара не может быть пустым');
@@ -214,34 +250,63 @@ async function saveEditedProduct() {
         return;
     }
 
+    if (editedProduct.photos.length === 0) {
+        alert('Добавьте хотя бы одну фотографию');
+        return;
+    }
+
+    const formData = new FormData();
+    editedProduct.photos.forEach(photo => {
+        formData.append('files', photo);
+    });
+
     try {
-        const response = await fetch('/api/v1/edit-shop/update/product/', {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: editedProduct.id,
-                title: editedProduct.title,
-                description: editedProduct.description,
-                price: editedProduct.price,
-                quantityInStock: editedProduct.quantityInStock,
-                category: editedProduct.category,
-                clothingSize: editedProduct.sizes,
-            })
-        });
-        const result = await response.text();
-        alert(result);
-        await loadProducts()
+        const s3Response = await fetch('/api/v1/s3bucket-storage/nikonshop-s3-database/upload-all/', {
+            method: 'POST',
+            body: formData
+        })
+        await s3Response;
+
+        if (s3Response.ok) {
+            const response = await fetch('/api/v1/edit-shop/update/product/', {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: editedProduct.id,
+                    title: editedProduct.title,
+                    description: editedProduct.description,
+                    price: editedProduct.price,
+                    quantityInStock: editedProduct.quantityInStock,
+                    category: editedProduct.category,
+                    clothingSize: editedProduct.sizes,
+                    productPhotoLinks: Array.from(editedProduct.photos).map(photo => photo.name)
+                })
+            });
+            const result = await response.text();
+
+            alert(result);
+            await loadProducts()
+        }
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
     }
-
     closeModalProduct()
 }
 
 async function deleteProduct(productId) {
     try {
+        const getResponse = await fetch(`/api/v1/edit-shop/get/product/${productId}`);
+        const product = await getResponse.json();
+
+        for (const link of product.productPhotoLinks) {
+            const response = await fetch(`/api/v1/s3bucket-storage/nikonshop-s3-database/delete/${link}`, {
+                method: 'DELETE'
+            });
+            await response;
+        }
+
         const response = await fetch(`/api/v1/edit-shop/delete/product/${productId}`, {
             method: 'DELETE'
         });
