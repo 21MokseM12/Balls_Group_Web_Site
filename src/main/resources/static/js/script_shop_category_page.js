@@ -37,11 +37,12 @@ async function loadProductsByCategory() {
             } catch (error) {
                 alert(`Произошла ошибка: ${error.message}`);
             }
-
         }
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
     }
+
+    initializeCarousel();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

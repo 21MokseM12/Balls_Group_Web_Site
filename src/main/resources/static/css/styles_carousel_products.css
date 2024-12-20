@@ -50,7 +50,7 @@
 .products-list {
     height: 90%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 40px; /* Расстояние между карточками */
     justify-content: center;
     padding: 20px;

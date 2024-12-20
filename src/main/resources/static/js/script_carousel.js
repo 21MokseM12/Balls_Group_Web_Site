@@ -8,22 +8,22 @@ function initializeCarousel() {
 
     // Функция для обновления позиции карусели
     const updateCarousel = () => {
-        const itemWidth = items[0].offsetWidth + 60; // Ширина элемента
-        const offset = -currentIndex * itemWidth; // Расчёт смещения
+        const itemWidth = items[0].offsetWidth + 150; // Ширина элемента
+        const offset = -(currentIndex) * itemWidth; // Расчёт смещения
         carousel.style.transform = `translateX(${offset}px)`; // Применение смещения
     };
 
     // Обработчик кнопки "Назад"
     prevButton.addEventListener("click", () => {
         // Уменьшаем индекс, если он больше 0, или переходим к последнему элементу
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+        currentIndex = (currentIndex > -1) ? currentIndex - 1 : items.length - 1;
         updateCarousel();
     });
 
     // Обработчик кнопки "Вперед"
     nextButton.addEventListener("click", () => {
         // Увеличиваем индекс, если он меньше длины карусели, или переходим к первому элементу
-        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : -1;
         updateCarousel();
     });
 
