@@ -195,9 +195,9 @@ section {
 }
 
 .about-item img {
-    height: 80%;
-    max-width: 100%;
-    border-radius: 40%;
+    height: 70%;
+    max-width: 80%;
+    border-radius: 20%;
 }
 
 .track-list {
