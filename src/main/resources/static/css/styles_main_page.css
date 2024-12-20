@@ -72,15 +72,17 @@ header {
 }
 
 /* Логотип */
-header .logo {
+header .logo-link {
     width: 150px; /* Настройка ширины логотипа */
     height: auto; /* Сохраняем пропорции */
     font-size: 1.5rem;
     font-weight: bold;
-    transition: transform 0.3s ease
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
-header .logo:hover {
+header .logo-link:hover {
     transform: scale(1.1);
 }
 
@@ -201,33 +203,64 @@ section {
 .track-list {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 
-.track {
-    background: #333;
-    padding: 20px;
+/* Стили для карточки альбома */
+.album-card {
+    background-color: #fff;
     border-radius: 10px;
-    flex: 1;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.track:hover {
+.album-card:hover {
     transform: scale(1.05);
-    background: #444;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-a.logo-link {
-    text-decoration: none; /* Убирает подчеркивание */
-    color: inherit; /* Сохраняет цвет текста родителя */
-    display: inline-block; /* Устанавливает поведение блока для обёртки */
+/* Логотип альбома */
+.album-logo {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
 }
 
-a.logo-link:hover,
-a.logo-link:focus {
-    color: inherit; /* Убирает изменения цвета при наведении или фокусе */
+.album-logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Информация об альбоме */
+.album-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.album-info a {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    color: #333;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s;
+}
+
+.album-info a:hover {
+    color: #d89000;
+    transform: scale(1.2);
+}
+
+.album-info p {
+    font-size: 1em;
+    margin: 0;
+    color: #666;
 }
 
 #tour-list p {
