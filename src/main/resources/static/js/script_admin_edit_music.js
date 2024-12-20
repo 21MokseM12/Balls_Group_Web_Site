@@ -156,6 +156,11 @@ async function addAlbum() {
         return;
     }
 
+    if ((file.size / 1024) > 1000) {
+        alert('Размер файла превышает 1 Мбайт')
+        return;
+    }
+
     formData.append('file', file);
 
     try {
