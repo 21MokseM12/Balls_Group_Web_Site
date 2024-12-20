@@ -13,7 +13,7 @@ async function loadProductsByCategory() {
 
         document.title = category.category;
 
-        const productList = document.getElementById('products-in-category');
+        const productList = document.getElementById('products-list');
         productList.innerHTML = '';
         for (const product of products) {
             try {
@@ -25,14 +25,14 @@ async function loadProductsByCategory() {
                 productItem.classList.add('product-item');
 
                 productItem.innerHTML = `
-            <img src="${photoUrl}">
-                <p>${product.title}</p>
-                <p class="price">${product.price} ₽</p>
-                <div class="button-container">
-                  <button class="add-to-cart-btn">Добавить в корзину</button>
-                  <a class="about-btn" href="/main/shop/product-page/${product.id}">Подробнее</a>
-                </div>
-            `;
+                    <img src="${photoUrl}">
+                    <p>${product.title}</p>
+                    <p class="price">${product.price} ₽</p>
+                    <div class="button-container">
+                      <button class="add-to-cart-btn">Добавить в корзину</button>
+                      <a class="about-btn" href="/main/shop/product-page/${product.id}">Подробнее</a>
+                    </div>
+                `;
                 productList.appendChild(productItem);
             } catch (error) {
                 alert(`Произошла ошибка: ${error.message}`);

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="/css/styles_shop_main_page.css">
-    <link rel="stylesheet" href="/css/styles_shop_category_page.css">
+<!--    <link rel="stylesheet" href="/css/styles_shop_main_page.css">-->
+    <link rel="stylesheet" href="/css/styles_shop_pages_pattern.css">
 </head>
 <body>
 <header>
@@ -35,7 +35,21 @@
 
 <main id="main-content" class="main-content">
     <div id="category-name" class="category-name"></div>
-    <div id="products-in-category" class="products-category">
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <div id="products-list" class="products-list">
+            </div>
+        </div>
+
+        <div>
+            <button class="carousel-btn prev">
+                &#10094;
+            </button>
+            <button class="carousel-btn next">
+                &#10095;
+            </button>
+        </div>
     </div>
 </main>
 
@@ -45,6 +59,7 @@
 
 <script src="/js/script_shop_load_categories.js"></script>
 <script src="/js/script_shop_category_page.js"></script>
+<script src="/js/script_carousel.js"></script>
 <script th:inline="javascript">
     const categoryId = [[${categoryId}]];
 </script>
