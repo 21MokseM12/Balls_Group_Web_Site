@@ -1,4 +1,4 @@
-package app.repository;
+package app.repository.music;
 
 import app.domain.entites.music.Album;
 import org.springframework.data.jpa.repository.JpaRepository;

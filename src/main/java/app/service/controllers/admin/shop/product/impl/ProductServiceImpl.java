@@ -1,7 +1,7 @@
 package app.service.controllers.admin.shop.product.impl;
 
 import app.domain.entites.shop.Product;
-import app.repository.ProductRepository;
+import app.repository.shop.ProductRepository;
 import app.service.controllers.admin.shop.product.ProductException;
 import app.service.controllers.admin.shop.product.ProductService;
 import lombok.extern.slf4j.Slf4j;

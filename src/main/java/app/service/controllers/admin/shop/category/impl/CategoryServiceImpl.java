@@ -1,7 +1,7 @@
 package app.service.controllers.admin.shop.category.impl;
 
 import app.domain.entites.shop.Category;
-import app.repository.CategoryRepository;
+import app.repository.shop.CategoryRepository;
 import app.service.controllers.admin.shop.category.CategoryException;
 import app.service.controllers.admin.shop.category.CategoryService;
 import lombok.extern.slf4j.Slf4j;

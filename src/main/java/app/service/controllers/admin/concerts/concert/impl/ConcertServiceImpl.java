@@ -1,7 +1,7 @@
 package app.service.controllers.admin.concerts.concert.impl;
 
 import app.domain.entites.concerts.Concert;
-import app.repository.ConcertRepository;
+import app.repository.concerts.ConcertRepository;
 import app.service.controllers.admin.concerts.concert.ConcertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

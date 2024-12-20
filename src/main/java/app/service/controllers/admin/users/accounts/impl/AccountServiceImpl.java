@@ -1,7 +1,7 @@
 package app.service.controllers.admin.users.accounts.impl;
 
 import app.domain.entites.users.Account;
-import app.repository.AccountRepository;
+import app.repository.users.AccountRepository;
 import app.service.controllers.admin.users.accounts.AccountService;
 import app.service.controllers.admin.users.accounts.utils.AccountEncoder;
 import org.springframework.beans.factory.annotation.Autowired;

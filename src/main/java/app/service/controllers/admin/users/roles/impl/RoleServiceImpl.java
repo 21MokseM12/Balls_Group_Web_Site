@@ -1,7 +1,7 @@
 package app.service.controllers.admin.users.roles.impl;
 
 import app.domain.entites.users.Role;
-import app.repository.RoleRepository;
+import app.repository.users.RoleRepository;
 import app.service.controllers.admin.users.roles.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

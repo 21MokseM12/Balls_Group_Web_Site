@@ -1,4 +1,4 @@
-package app.repository;
+package app.repository.users;
 
 import app.domain.entites.users.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

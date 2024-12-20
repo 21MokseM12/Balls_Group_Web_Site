@@ -1,4 +1,4 @@
-package app.repository;
+package app.repository.shop;
 
 import app.domain.entites.shop.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package app.service.security;
 
 import app.domain.entites.users.Account;
-import app.repository.AccountRepository;
+import app.repository.users.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

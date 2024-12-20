@@ -1,7 +1,7 @@
 package app.service.controllers.admin.music.albums.impl;
 
 import app.domain.entites.music.Album;
-import app.repository.AlbumRepository;
+import app.repository.music.AlbumRepository;
 import app.service.controllers.admin.music.albums.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
