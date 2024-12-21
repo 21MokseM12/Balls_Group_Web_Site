@@ -20,6 +20,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
+                    deleteCascade: true
               - column:
                   name: username
                   type: varchar(64)
@@ -31,22 +32,48 @@ databaseChangeLog:
                   constraints:
                     nullable: false
   - changeSet:
-      id: create-table-user-roles
+      id: create-table-roles
       author: moksem
       changes:
         - createTable:
-            tableName: user_roles
+            tableName: roles
             schemaName: users
             columns:
               - column:
-                  name: user_id
-                  type: bigint
+                  name: id
+                  type: integer
+                  autoIncrement: true
                   constraints:
-                    foreignKeyName: user_id_fk
+                    primaryKey: true
                     nullable: false
-                    references: users.accounts(id)
               - column:
-                  name: roles
+                  name: role
                   type: varchar(255)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: create-table-accounts_roles
+      author: moksem
+      changes:
+        - createTable:
+            schemaName: users
+            tableName: accounts_roles
+            columns:
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    deleteCascade: true
+                    nullable: false
+                    foreignKeyName: account_id_fk
+                    references: users.accounts(id)
+              - column:
+                  name: role_id
+                  type: integer
+                  constraints:
+                    deleteCascade: false
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: role_id_fk
+                    references: users.roles(id)
