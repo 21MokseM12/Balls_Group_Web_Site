@@ -10,7 +10,6 @@ import java.util.Set;
 @Table( schema = "users", name = "accounts")
 @Getter
 @Setter
-//todo поправить каскадное удаление роли при удалении пользователя, добавить удаление пользователя без удаления роли
 public class Account {
 
     @Id
@@ -21,7 +20,7 @@ public class Account {
 
     private String password;
 
-    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
     @JoinTable(
             schema = "users",
             name = "accounts_roles",

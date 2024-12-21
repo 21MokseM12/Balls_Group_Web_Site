@@ -27,7 +27,7 @@ public class Product {
     @JoinColumn(referencedColumnName = "id", name = "category_id", nullable = false)
     private Category category;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinTable(
             schema = "shop",
             name = "products_sizes",
