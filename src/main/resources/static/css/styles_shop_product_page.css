@@ -1,0 +1,121 @@
+.product {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.image-gallery {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 350px;
+}
+
+.image-gallery .main-photo img {
+    border-radius: 50px;
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border: 1px solid #333;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column; /* Фотографии будут располагаться по вертикали */
+    justify-content: space-between; /* Расстояние между изображениями */
+    /*height: 100%; !* Блок с миниатюрами будет равен высоте главного фото *!*/
+    margin-left: 10px; /* Отступ между главным фото и миниатюрами */
+}
+
+.thumbnails img {
+    border-radius: 20px;
+    width: 100px; /* Миниатюры будут растягиваться по ширине контейнера */
+    height: auto; /* Пропорциональное изменение высоты */
+    margin-bottom: 10px; /* Отступ между миниатюрами */
+    transition: transform 0.5s ease;
+}
+
+.thumbnails img:hover {
+    transform: scale(3);
+}
+
+.product-details {
+    width: 100%;
+    flex: 1;
+    margin-left: 20px;
+    margin-right: 50px;
+}
+
+.product-details h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.product-price {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sizes button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    letter-spacing: 2px;
+    width: 70px;
+    height: 70px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.5s ease;
+}
+
+.sizes button:hover {
+    background-color: #74c8b0;
+    transform: scale(1.2);
+}
+
+.sizes button.active {
+    background-color: #74c8b0;
+}
+
+.buy-button {
+    color: white;
+    background-color: #333;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    width: 200px;
+    height: 60px;
+    align-content: center;
+    letter-spacing: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #74c8b0;
+    transform: scale(1.2);
+}
+
+.description {
+    font-size: 28px;
+}
+
+.description p {
+    margin: 5px 0;
+}
+
+.description b {
+    color: #fff;
+}

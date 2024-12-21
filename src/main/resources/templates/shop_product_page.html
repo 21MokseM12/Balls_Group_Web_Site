@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/css/styles_shop_pages_pattern.css">
+    <link rel="stylesheet" href="/css/styles_preloader.css">
+    <link rel="stylesheet" href="/css/styles_shop_product_page.css">
+</head>
+<body>
+<header>
+    <div id="preloader" class="preloader">
+        <div class="logo">
+            <img src="/img/shop_main_page/logo.jpg" class="logo-image" alt="Логотип ШАРЫ">
+        </div>
+    </div>
+
+    <a href="/main/">
+        <div class="logo-container">
+            <img src="/img/shop_main_page/logo-circle.png" alt="Логотип" class="logo">
+        </div>
+    </a>
+
+    <div id="category-list" class="category-section">
+    </div>
+    <div class="header-icons">
+        <a href="">
+            <div class="cart-icon">
+                <img src="/img/shop_main_page/cart-icon.png" alt="Корзина">
+                <span class="cart-count"></span>
+            </div>
+        </a>
+    </div>
+</header>
+
+<main id="main-content" class="main-content">
+    <div id="product" class="product">
+        <div id="image-gallery" class="image-gallery">
+
+        </div>
+        <div id="product-details" class="product-details">
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024, ШАРЫ. Все права защищены.</p>
+</footer>
+
+<script th:inline="javascript">
+    const productId = [[${productId}]];
+</script>
+<script src="/js/script_shop_product_page.js"></script>
+<script src="/js/script_shop_load_categories.js"></script>
+</body>
+</html>
