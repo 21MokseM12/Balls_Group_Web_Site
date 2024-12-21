@@ -8,6 +8,14 @@ html, body {
     font-family: 'Arial', sans-serif;
 }
 
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #74c8b0;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 main {
     min-height: calc(100vh - 20px); /* Высота окна браузера за вычетом высоты подвала */
     display: flex;
