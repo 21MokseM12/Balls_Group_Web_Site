@@ -43,6 +43,25 @@
 
         </div>
     </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div id="buy-modal-window" class="buy-modal-window">
+        <div class="modal" id="order-modal">
+            <div class="modal-header">
+                <h2>Оформление заказа</h2>
+                <button id="close-modal" class="close-modal" onclick="closeBuyModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="name" placeholder="ФИО">
+                <input type="text" id="phone" placeholder="Телефон">
+                <input type="text" id="address" placeholder="Адрес доставки">
+                <input type="email" id="email" placeholder="Электронная почта">
+            </div>
+            <div class="modal-footer">
+                <button id="submit-order" onclick="submitOrder()">Оформить</button>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer>
@@ -53,7 +72,7 @@
     const productId = [[${productId}]];
 </script>
 <script src="/js/script_shop_product_page.js"></script>
-<script src="/js/script_open_buy_modal.js"></script>
+<script src="/js/script_buy_modal.js" defer></script>
 <script src="/js/script_shop_load_categories.js"></script>
 </body>
 </html>

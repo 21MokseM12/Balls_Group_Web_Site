@@ -2,6 +2,7 @@ package app.service.controllers.admin.shop.shop_management;
 
 import app.domain.entites.shop.Category;
 import app.domain.entites.shop.ClothingSize;
+import app.domain.entites.shop.Customer;
 import app.domain.entites.shop.Product;
 import org.springframework.http.ResponseEntity;
 
@@ -41,4 +42,8 @@ public interface ShopService {
     ResponseEntity<String> updateClothingSize(ClothingSize size);
 
     List<Product> findAllProductsByCategory(Long categoryId);
+
+    ResponseEntity<String> addOrder(Customer customer, Long productId);
+
+    ResponseEntity<String> decrementStock(Long productId, Integer decrementBy);
 }

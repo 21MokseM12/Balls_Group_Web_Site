@@ -49,9 +49,15 @@ public class SecurityConfig {
 
                         .requestMatchers("/api/v1/edit-shop/get-all/**").permitAll()
                         .requestMatchers("/api/v1/edit-shop/get/**").permitAll()
-                        .requestMatchers("/api/v1/edit-shop/add/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/add/order/**").permitAll()
+                        .requestMatchers("/api/v1/edit-shop/add/product/").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/add/category/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/add/clothing-size/**").authenticated()
                         .requestMatchers("/api/v1/edit-shop/delete/**").authenticated()
-                        .requestMatchers("/api/v1/edit-shop/update/**").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/update/product/").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/update/category/").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/update/clothing-size/").authenticated()
+                        .requestMatchers("/api/v1/edit-shop/update/stock/").authenticated()
 
                         .requestMatchers("/api/v1/s3bucket-storage/download/**").permitAll()
                         .requestMatchers("/api/v1/s3bucket-storage/upload/**").authenticated()

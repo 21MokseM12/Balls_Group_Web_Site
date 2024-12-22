@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-customers
+      author: moksem
+      changes:
+        - createTable:
+            schemaName: shop
+            tableName: customers
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(128)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-table-orders
+      author: moksem
+      changes:
+        - createTable:
+            schemaName: shop
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: customer_id_fk
+                    references: shop.customers(id)
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: product_id_fk
+                    references: shop.products(id)

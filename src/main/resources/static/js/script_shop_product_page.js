@@ -53,9 +53,9 @@ async function loadProductData() {
 
         const productDetails = document.getElementById('product-details');
         productDetails.innerHTML = `
-            <h1>${product.title}</h1>
+            <h1 id="product-title">${product.title}</h1>
             <div class="product-price">
-                <span>${product.price} ₽</span>
+                <span id="product-price">${product.price} ₽</span>
             </div>
             <div id="sizes" class="sizes"></div>
             <button id="buy-button" class="buy-button" onclick="openBuyModal(${product.id})"></button>
@@ -67,6 +67,7 @@ async function loadProductData() {
         const buyContainer = document.getElementById('buy-button');
         if (product.quantityInStock === 0) {
             buyContainer.textContent = "Нет в наличии";
+            buyContainer.disabled = true;
         } else {
             buyContainer.textContent = "Купить";
         }

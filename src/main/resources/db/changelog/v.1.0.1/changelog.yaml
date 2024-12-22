@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-tag-1.0.1
+      author: moksem
+      changes:
+        - tagDatabase:
+            tag: 1.0.1
+  - include:
+      file: create-orders.yaml
+      relativeToChangelogFile: true

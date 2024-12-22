@@ -2,9 +2,11 @@ package app.service.controllers.admin.shop.shop_management.impl;
 
 import app.domain.entites.shop.Category;
 import app.domain.entites.shop.ClothingSize;
+import app.domain.entites.shop.Customer;
 import app.domain.entites.shop.Product;
 import app.service.controllers.admin.shop.category.CategoryManagementService;
 import app.service.controllers.admin.shop.clothing.ClothingSizeManagementService;
+import app.service.controllers.admin.shop.order.OrderManagementService;
 import app.service.controllers.admin.shop.product.ProductManagementService;
 import app.service.controllers.admin.shop.shop_management.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class ShopServiceImpl implements ShopService {
 
     @Autowired
     private ProductManagementService productService;
+
+    @Autowired
+    private OrderManagementService orderService;
 
 
     @Override
@@ -105,5 +110,15 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public List<Product> findAllProductsByCategory(Long categoryId) {
         return productService.findAllProductsByCategory(categoryId);
+    }
+
+    @Override
+    public ResponseEntity<String> addOrder(Customer customer, Long productId) {
+        return orderService.addOrder(customer, productId);
+    }
+
+    @Override
+    public ResponseEntity<String> decrementStock(Long productId, Integer decrementBy) {
+        return productService.decrementStock(productId, decrementBy);
     }
 }

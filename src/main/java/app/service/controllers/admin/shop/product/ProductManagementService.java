@@ -80,4 +80,11 @@ public class ProductManagementService {
         Category category = categoryService.findById(categoryId);
         return productService.findAllByCategory(category);
     }
+
+    public ResponseEntity<String> decrementStock(Long productId, Integer decrementBy) {
+        Product product = productService.findById(productId);
+        product.setQuantityInStock(product.getQuantityInStock()-decrementBy);
+        productService.save(product);
+        return ResponseEntity.ok("Операция выполнена успешно");
+    }
 }
