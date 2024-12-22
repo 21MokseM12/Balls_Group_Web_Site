@@ -11,6 +11,17 @@
     color: #333;
 }
 
+.orders-button {
+    font-size: 25px;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.orders-button:hover {
+    background-color: #0288d1;
+    transform: scale(1.2);
+}
+
 /* Стили для меток радиокнопок */
 .radio-label {
     display: flex;

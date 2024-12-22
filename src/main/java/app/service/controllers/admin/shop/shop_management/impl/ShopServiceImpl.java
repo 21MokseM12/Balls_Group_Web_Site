@@ -132,4 +132,14 @@ public class ShopServiceImpl implements ShopService {
     public ResponseEntity<String> addOrderedProduct(OrderedProduct orderedProduct) {
         return orderService.addOrderedProduct(orderedProduct);
     }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
+    @Override
+    public ResponseEntity<String> deleteOrder(Long orderId) {
+        return orderService.deleteOrder(orderId);
+    }
 }

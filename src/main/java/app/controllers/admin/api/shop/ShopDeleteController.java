@@ -29,4 +29,9 @@ public class ShopDeleteController {
     public ResponseEntity<String> deleteClothingSize(@PathVariable Integer id) {
         return shopService.deleteClothingSize(id);
     }
+
+    @DeleteMapping("order/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
+        return shopService.deleteOrder(orderId);
+    }
 }

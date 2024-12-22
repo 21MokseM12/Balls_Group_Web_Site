@@ -10,15 +10,16 @@
 <body>
 <header>
     <h1>Панель товаров Никоншопа</h1>
+    <button id="orders" class="orders-button" onclick="location.href='/api/v1/edit-shop/orders/'">К заказам</button>
 </header>
 <div class="container">
     <div class="actions">
         <button onclick="loadCategories()">Показать все категории</button>
         <button onclick="loadSizes()">Показать все размеры одежды</button>
         <button onclick="loadProducts()">Показать все товары</button>
-        <button onclick="toggleCategoryForm()">Добавить категорию</button>
-        <button onclick="toggleSizeForm()">Добавить новый размер одежды</button>
         <button onclick="toggleProductForm()">Добавить новый товар</button>
+        <button onclick="toggleSizeForm()">Добавить новый размер одежды</button>
+        <button onclick="toggleCategoryForm()">Добавить категорию</button>
     </div>
 
     <table id="product-table">

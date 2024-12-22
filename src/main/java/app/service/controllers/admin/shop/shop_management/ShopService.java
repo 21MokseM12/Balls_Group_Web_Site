@@ -47,4 +47,8 @@ public interface ShopService {
     ResponseEntity<String> addOrder(OrderDTO order);
 
     ResponseEntity<String> addOrderedProduct(OrderedProduct orderedProduct);
+
+    List<Order> getAllOrders();
+
+    ResponseEntity<String> deleteOrder(Long orderId);
 }

@@ -37,4 +37,10 @@ public class AdminPageController {
     public String editAlbumsPanel() {
         return "admin_edit_music";
     }
+
+    @GetMapping("edit-shop/orders/")
+    @PreAuthorize("hasAuthority('MERCH_MANAGER') || hasAuthority('SYSTEM_ADMIN')")
+    public String editOrdersPanel() {
+        return "admin_edit_orders";
+    }
 }

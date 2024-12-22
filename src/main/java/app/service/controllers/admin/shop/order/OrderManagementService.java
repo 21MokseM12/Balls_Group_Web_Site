@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderManagementService {
 
@@ -45,5 +47,14 @@ public class OrderManagementService {
         orderedProduct.setSize(clothingSize);
         Long orderedProductId = orderedProductService.save(orderedProduct);
         return ResponseEntity.ok(String.valueOf(orderedProductId));
+    }
+
+    public List<Order> getAllOrders() {
+        return orderService.findAll();
+    }
+
+    public ResponseEntity<String> deleteOrder(Long orderId) {
+        orderService.deleteById(orderId);
+        return ResponseEntity.ok("Заказ успешно удален!");
     }
 }
