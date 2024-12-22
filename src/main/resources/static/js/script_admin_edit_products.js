@@ -549,5 +549,3 @@ function toggleSizeSelect(hasSize) {
         sizeSelectContainer.style.display = 'none'; // Скрыть селект
     }
 }
-
-//todo добавить вывод текущих заказов
