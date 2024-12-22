@@ -76,12 +76,21 @@ async function loadProductData() {
         if (product.clothingSize.length > 0) {
             product.clothingSize.forEach(size => {
                 const button = document.createElement("button");
+                button.classList.add('size-button');
                 button.textContent = size.size;
                 button.addEventListener("click", function() {
                     this.classList.toggle("active");
                 });
 
                 sizeContainer.appendChild(button);
+            });
+
+            const sizeButtons = document.querySelectorAll('.size-button');
+            sizeButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
             });
         } else {
             sizeContainer.style.display = "none";

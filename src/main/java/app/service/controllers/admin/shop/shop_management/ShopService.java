@@ -1,9 +1,6 @@
 package app.service.controllers.admin.shop.shop_management;
 
-import app.domain.entites.shop.Category;
-import app.domain.entites.shop.ClothingSize;
-import app.domain.entites.shop.Customer;
-import app.domain.entites.shop.Product;
+import app.domain.entites.shop.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -43,7 +40,11 @@ public interface ShopService {
 
     List<Product> findAllProductsByCategory(Long categoryId);
 
-    ResponseEntity<String> addOrder(Customer customer, Long productId);
-
     ResponseEntity<String> decrementStock(Long productId, Integer decrementBy);
+
+    ResponseEntity<String> addCustomer(Customer customer);
+
+    ResponseEntity<String> addOrder(OrderDTO order);
+
+    ResponseEntity<String> addOrderedProduct(OrderedProduct orderedProduct);
 }

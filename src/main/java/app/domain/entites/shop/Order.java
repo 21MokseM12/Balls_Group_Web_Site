@@ -21,11 +21,11 @@ public class Order {
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "ordered_product_id", nullable = false)
+    private OrderedProduct orderedProduct;
 
-    public Order(Customer customer, Product product) {
+    public Order(Customer customer, OrderedProduct orderedProduct) {
         this.customer = customer;
-        this.product = product;
+        this.orderedProduct = orderedProduct;
     }
 }

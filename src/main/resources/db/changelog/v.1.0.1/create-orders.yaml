@@ -35,6 +35,38 @@ databaseChangeLog:
                   constraints:
                     nullable: false
   - changeSet:
+      id: create-table-ordered-products
+      author: moksem
+      changes:
+        - createTable:
+            schemaName: shop
+            tableName: ordered_products
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_size_id
+                  type: integer
+                  constraints:
+                    nullable: true
+                    foreignKeyName: ordered_product_size_fk
+                    references: shop.sizes(id)
+  - changeSet:
       id: create-table-orders
       author: moksem
       changes:
@@ -56,8 +88,8 @@ databaseChangeLog:
                     foreignKeyName: customer_id_fk
                     references: shop.customers(id)
               - column:
-                  name: product_id
+                  name: ordered_product_id
                   type: bigint
                   constraints:
-                    foreignKeyName: product_id_fk
-                    references: shop.products(id)
+                    foreignKeyName: ordered_product_id_fk
+                    references: shop.ordered_products(id)

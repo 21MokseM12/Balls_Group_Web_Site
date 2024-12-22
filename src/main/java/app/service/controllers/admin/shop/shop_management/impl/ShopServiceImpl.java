@@ -1,11 +1,9 @@
 package app.service.controllers.admin.shop.shop_management.impl;
 
-import app.domain.entites.shop.Category;
-import app.domain.entites.shop.ClothingSize;
-import app.domain.entites.shop.Customer;
-import app.domain.entites.shop.Product;
+import app.domain.entites.shop.*;
 import app.service.controllers.admin.shop.category.CategoryManagementService;
 import app.service.controllers.admin.shop.clothing.ClothingSizeManagementService;
+import app.service.controllers.admin.shop.customer.CustomerManagementService;
 import app.service.controllers.admin.shop.order.OrderManagementService;
 import app.service.controllers.admin.shop.product.ProductManagementService;
 import app.service.controllers.admin.shop.shop_management.ShopService;
@@ -30,6 +28,9 @@ public class ShopServiceImpl implements ShopService {
 
     @Autowired
     private OrderManagementService orderService;
+
+    @Autowired
+    private CustomerManagementService customerService;
 
 
     @Override
@@ -113,12 +114,22 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public ResponseEntity<String> addOrder(Customer customer, Long productId) {
-        return orderService.addOrder(customer, productId);
+    public ResponseEntity<String> decrementStock(Long productId, Integer decrementBy) {
+        return productService.decrementStock(productId, decrementBy);
     }
 
     @Override
-    public ResponseEntity<String> decrementStock(Long productId, Integer decrementBy) {
-        return productService.decrementStock(productId, decrementBy);
+    public ResponseEntity<String> addCustomer(Customer customer) {
+        return customerService.addCustomer(customer);
+    }
+
+    @Override
+    public ResponseEntity<String> addOrder(OrderDTO order) {
+        return orderService.addOrder(order);
+    }
+
+    @Override
+    public ResponseEntity<String> addOrderedProduct(OrderedProduct orderedProduct) {
+        return orderService.addOrderedProduct(orderedProduct);
     }
 }

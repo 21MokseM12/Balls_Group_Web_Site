@@ -54,4 +54,9 @@ public class ClothingSizeServiceImpl implements ClothingSizeService {
     public ClothingSize findBySize(ClothingSize size) {
         return clothingSizeRepository.findBySize(size.getSize());
     }
+
+    @Override
+    public ClothingSize findBySize(String size) {
+        return clothingSizeRepository.findBySize(size);
+    }
 }

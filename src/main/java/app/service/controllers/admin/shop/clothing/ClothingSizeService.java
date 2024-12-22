@@ -18,4 +18,6 @@ public interface ClothingSizeService {
     boolean existsBySize(ClothingSize size);
 
     ClothingSize findBySize(ClothingSize size);
+
+    ClothingSize findBySize(String size);
 }

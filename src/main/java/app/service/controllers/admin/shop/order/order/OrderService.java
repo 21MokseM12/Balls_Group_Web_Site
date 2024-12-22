@@ -1,4 +1,4 @@
-package app.service.controllers.admin.shop.order;
+package app.service.controllers.admin.shop.order.order;
 
 import app.domain.entites.shop.Order;
 
