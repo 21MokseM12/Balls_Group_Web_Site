@@ -36,11 +36,11 @@ async function editUser(userId) {
 
     roles.forEach(role => {
         const label = document.createElement("label");
-        label.className = "roles-options";
+        label.className = "role-option";
 
         const input = document.createElement("input");
         input.type = "checkbox";
-        input.name = "sizes";
+        input.name = "roles";
         input.value = role.role;
 
         const customCheckbox = document.createElement("span");
