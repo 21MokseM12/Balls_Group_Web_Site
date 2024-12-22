@@ -7,23 +7,37 @@ async function loadProducts() {
         productsList.innerHTML = '';
 
         for (const product of products) {
-            const s3Response = await fetch(`/api/v1/s3bucket-storage/nikonshop-s3-database/download/${product.productPhotoLinks[0]}`);
-            const photo = await s3Response.blob();
+            try {
+                const s3Response = await fetch(`/api/v1/s3bucket-storage/nikonshop-s3-database/download/${product.productPhotoLinks[0]}`);
+                const photo = await s3Response.blob();
 
-            const productItem = document.createElement('div');
-            productItem.classList.add('product-item'); // Класс для стилизации карточки
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item'); // Класс для стилизации карточки
 
-            productItem.innerHTML = `
-                <img src="${URL.createObjectURL(photo)}">
-                <p>${product.title}</p>
-                <p class="price">${product.price} ₽</p>
-                <div class="button-container">
-                  <button class="add-to-cart-btn">Добавить в корзину</button>
-                  <a class="about-btn" href="/main/shop/product-page/${product.id}">Подробнее...</a>
-                </div>
-            `;
-            productsList.appendChild(productItem);
+                productItem.innerHTML = `
+                    <img src="${URL.createObjectURL(photo)}">
+                    <p>${product.title}</p>
+                    <p class="price">${product.price} ₽</p>
+                    <div class="button-container">
+<!--                      <button id="buy-button" class="add-to-cart-btn" onclick="openBuyModal(${product.id})"></button>-->
+                      <a class="about-btn" href="/main/shop/product-page/${product.id}">О товаре</a>
+                    </div>
+                `;
+
+                productsList.appendChild(productItem);
+            } catch (error) {
+                alert(`Произошла ошибка: ${error.message}`);
+            }
         }
+
+        // const buyButtons = document.querySelectorAll('.add-to-cart-btn');
+        // buyButtons.forEach((button, index) => {
+        //     if (products[index].quantityInStock === 0) {
+        //         button.textContent = "Нет в наличии";
+        //     } else {
+        //         button.textContent = "Купить";
+        //     }
+        // });
     } catch (error) {
         console.error(error);
         productsList.innerHTML = '<p>Ошибка загрузки товаров. Попробуйте позже.</p>';

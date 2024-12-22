@@ -29,15 +29,25 @@ async function loadProductsByCategory() {
                     <p>${product.title}</p>
                     <p class="price">${product.price} ₽</p>
                     <div class="button-container">
-                      <button class="add-to-cart-btn">Добавить в корзину</button>
-                      <a class="about-btn" href="/main/shop/product-page/${product.id}">Подробнее</a>
+<!--                      <button id="buy-button" class="add-to-cart-btn" onclick="openBuyModal(${product.id})"></button>-->
+                      <a class="about-btn" href="/main/shop/product-page/${product.id}">О товаре</a>
                     </div>
                 `;
+
                 productList.appendChild(productItem);
             } catch (error) {
                 alert(`Произошла ошибка: ${error.message}`);
             }
         }
+
+        // const buyButtons = document.querySelectorAll('.add-to-cart-btn');
+        // buyButtons.forEach((button, index) => {
+        //     if (products[index].quantityInStock === 0) {
+        //         button.textContent = "Нет в наличии";
+        //     } else {
+        //         button.textContent = "Купить";
+        //     }
+        // });
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
     }

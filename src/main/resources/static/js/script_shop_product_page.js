@@ -42,15 +42,12 @@ async function loadProductData() {
 
         const photoContainer = document.getElementById('photos');
         filteredPhotoUrls.forEach(photoUrl => {
-            // const img = document.createElement("img");
             const img = new Image(
                 mainPhotoWidth / filteredPhotoUrls.length,
                 mainPhotoWidth / filteredPhotoUrls.length
             );
             img.src = photoUrl;
             img.alt = `Фото товара ${product.title}`;
-            // img.height = ();
-            // img.width = (mainPhotoWidth / filteredPhotoUrls.length);
             photoContainer.appendChild(img);
         });
 
@@ -61,7 +58,7 @@ async function loadProductData() {
                 <span>${product.price} ₽</span>
             </div>
             <div id="sizes" class="sizes"></div>
-            <button id="buy-button" class="buy-button"></button>
+            <button id="buy-button" class="buy-button" onclick="openBuyModal(${product.id})"></button>
             <div class="description">
                 <p>${product.description}</p>
             </div>

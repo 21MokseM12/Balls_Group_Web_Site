@@ -119,8 +119,9 @@
 .button-container {
     display: flex;
     flex-direction: column;
-    /*justify-content: space-between;*/
-    gap: 10px;
+    margin-bottom: 40px;
+    /*gap: 15px;*/
+    /*justify-content: center;*/
     margin-top: auto;
     padding: 10px;
     width: 100%;
@@ -143,6 +144,9 @@
 
 /* Кнопка "Добавить в корзину" 8acbaf */
 .add-to-cart-btn {
+    font-size: 18px;
+    height: 20%;
+    width: 40%;
     background-color: #8acbaf; /* Синий цвет */
     color: white;
 }
@@ -154,6 +158,8 @@
 
 /* Кнопка "Подробнее" */
 .about-btn {
+    width: 40%;
+    height: 20%;
     background-color: #fff; /* Белый фон */
     color: #8acbaf;
     text-decoration: none;
