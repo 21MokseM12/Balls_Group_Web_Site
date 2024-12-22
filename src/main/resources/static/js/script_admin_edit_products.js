@@ -318,6 +318,10 @@ async function deleteProduct(productId) {
     await loadProducts()
 }
 
+function closeModalProduct() {
+    document.getElementById('modal-product').style.display = 'none';
+}
+
 // categories functions
 async function loadCategories() {
     const response = await fetch('/api/v1/edit-shop/get-all/categories/');
@@ -421,6 +425,10 @@ async function deleteCategory(categoryId) {
         alert(`Произошла ошибка: ${error.message}`);
     }
     await loadCategories()
+}
+
+function closeModalCategory() {
+    document.getElementById('modal-category').style.display = 'none';
 }
 
 //clothing sizes functions
@@ -532,14 +540,6 @@ function closeModalClothingSize() {
     document.getElementById('modal-clothing-size').style.display = 'none';
 }
 
-function closeModalCategory() {
-    document.getElementById('modal-category').style.display = 'none';
-}
-
-function closeModalProduct() {
-    document.getElementById('modal-product').style.display = 'none';
-}
-
 function toggleSizeSelect(hasSize) {
     const sizeSelectContainer = document.getElementById('sizeSelectContainer');
 
@@ -549,3 +549,5 @@ function toggleSizeSelect(hasSize) {
         sizeSelectContainer.style.display = 'none'; // Скрыть селект
     }
 }
+
+//todo добавить вывод текущих заказов
