@@ -248,7 +248,8 @@ async function saveEditedRole() {
         });
         const result = await response.text();
         alert(result);
-        await loadRoles()
+        await loadRoles();
+        await loadUsers();
     } catch (error) {
         alert(`Произошла ошибка: ${error.message}`);
     }
