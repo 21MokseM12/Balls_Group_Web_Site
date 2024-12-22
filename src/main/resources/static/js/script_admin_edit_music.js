@@ -26,15 +26,15 @@ async function editAlbum(albumId) {
     const response = await fetch(`/api/v1/edit-music/get/album/${albumId}`);
     const album = await response.json();
 
-    //todo сделать вывод файла на фронт
-
-    // const s3Response = fetch(`/api/v1/s3bucket-storage/balls-group-storage-music/download/${album.logoFileName}`)
-    // const albumLogo = await s3Response.blob();
+    const s3Response = await fetch(`/api/v1/s3bucket-storage/balls-group-storage-music/download/${album.logoFileName}`)
+    const albumLogo = await s3Response.blob();
+    const imageUrl = URL.createObjectURL(albumLogo);
 
     document.getElementById('edit-album-id').value = album.id;
     document.getElementById('edit-album-title').value = album.title;
     document.getElementById('edit-album-description').value = album.description;
     document.getElementById('edit-album-listen').value = album.listenLink;
+    document.getElementById('edit-album-picture').src = imageUrl;
 }
 
 async function saveEditedAlbum() {
