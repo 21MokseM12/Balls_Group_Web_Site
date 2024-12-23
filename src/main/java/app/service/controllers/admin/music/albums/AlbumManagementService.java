@@ -24,7 +24,7 @@ public class AlbumManagementService {
 
     public ResponseEntity<String> addAlbum(Album album) {
         if (albumService.existsByTitle(album.getTitle())) {
-            return ResponseEntity.ok("Альбом с таким названием уже существует");
+            return ResponseEntity.badRequest().body("Альбом с таким названием уже существует");
         } else {
             albumService.save(album);
             return ResponseEntity.ok("Альбом успешно добавлен!");
@@ -36,7 +36,7 @@ public class AlbumManagementService {
             albumService.save(albumDTO);
             return ResponseEntity.ok("Альбом успешно обновлен!");
         } else {
-            return ResponseEntity.ok("Альбом не был найден");
+            return ResponseEntity.badRequest().body("Альбом не был найден");
         }
     }
 
