@@ -14,7 +14,6 @@ public class CategoryManagementService {
     @Autowired
     private CategoryService categoryService;
 
-
     public List<Category> findAllCategories() {
         return categoryService.findAll();
     }
