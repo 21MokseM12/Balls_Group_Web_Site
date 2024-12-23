@@ -1,13 +1,17 @@
 package app.domain.entites.shop;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(schema = "shop", name = "ordered_products")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderedProduct {
 
     @Id
