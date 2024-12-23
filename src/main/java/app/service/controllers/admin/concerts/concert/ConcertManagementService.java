@@ -24,7 +24,7 @@ public class ConcertManagementService {
 
     public ResponseEntity<String> addConcert(Concert concert) {
         if (concertService.exists(concert)) {
-            return ResponseEntity.ok("Концерт с такими данными уже существует");
+            return ResponseEntity.badRequest().body("Концерт с такими данными уже существует");
         } else {
             concertService.save(concert);
             return ResponseEntity.ok("Концерт успешно добавлен!");
