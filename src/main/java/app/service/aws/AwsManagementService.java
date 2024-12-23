@@ -21,12 +21,12 @@ public class AwsManagementService {
     @Autowired
     private AwsProvider provider;
 
-    public ResponseEntity<?> listFiles(String bucketName) {
+    public ResponseEntity<List<String>> listFiles(String bucketName) {
         val body = provider.listFiles(bucketName);
         return ResponseEntity.ok(body);
     }
 
-    public ResponseEntity<?> uploadFiles(String bucketName, List<MultipartFile> files) {
+    public ResponseEntity<String> uploadFiles(String bucketName, List<MultipartFile> files) {
         int indexUploadError = -1;
         for (int i = 0; i < files.size(); i++) {
             ResponseEntity<?> response = uploadFile(bucketName, files.get(i));
@@ -45,7 +45,7 @@ public class AwsManagementService {
     }
 
     @SneakyThrows(IOException.class)
-    public ResponseEntity<?> uploadFile(String bucketName, MultipartFile file) {
+    public ResponseEntity<String> uploadFile(String bucketName, MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("File is empty");
         }
@@ -61,7 +61,7 @@ public class AwsManagementService {
     }
 
     @SneakyThrows
-    public ResponseEntity<?> downloadFile(String bucketName, String fileName) {
+    public ResponseEntity<byte[]> downloadFile(String bucketName, String fileName) {
         val body = provider.downloadFile(bucketName, fileName);
 
         return ResponseEntity.ok()
@@ -70,8 +70,8 @@ public class AwsManagementService {
                 .body(body.toByteArray());
     }
 
-    public ResponseEntity<?> deleteFile(String bucketName, String fileName) {
+    public ResponseEntity<String> deleteFile(String bucketName, String fileName) {
         provider.deleteFile(bucketName, fileName);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("File %s was deleted successfully".formatted(fileName));
     }
 }
