@@ -1,7 +1,6 @@
 package app.controllers.shop;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ShopMainPageController {
 
     @GetMapping
-    public String shopPage(Model model) {
+    public String shopPage() {
         return "shop_main_page";
     }
 
