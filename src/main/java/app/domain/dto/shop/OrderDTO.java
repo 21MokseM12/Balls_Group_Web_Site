@@ -1,4 +1,4 @@
-package app.domain.entites.shop;
+package app.domain.dto.shop;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
