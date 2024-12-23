@@ -116,7 +116,7 @@ public class AlbumManagementServiceTest {
     }
 
     @Test
-    void updateAlbum_ShouldReturnNotFound_WhenConcertDoesNotExist() {
+    void updateAlbum_ShouldReturnNotFound_WhenAlbumDoesNotExist() {
         // Arrange
         Album album = new Album();
         album.setId(1L);
