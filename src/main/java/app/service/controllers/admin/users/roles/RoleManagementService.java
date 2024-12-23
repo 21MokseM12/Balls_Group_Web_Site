@@ -27,7 +27,7 @@ public class RoleManagementService {
             roleService.save(role);
             return ResponseEntity.ok("Роль была успешно добавлена!");
         } else {
-            return ResponseEntity.ok("Роль с таким названием уже существует!");
+            return ResponseEntity.badRequest().body("Роль с таким названием уже существует!");
         }
     }
 
@@ -36,7 +36,7 @@ public class RoleManagementService {
             roleService.save(role);
             return ResponseEntity.ok("Роль успешно обновлена!");
         } else {
-            return ResponseEntity.ok("Роли с таким ID не существует");
+            return ResponseEntity.badRequest().body("Роли с таким ID не существует");
         }
     }
 
