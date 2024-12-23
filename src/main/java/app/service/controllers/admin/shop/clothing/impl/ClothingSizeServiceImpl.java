@@ -37,7 +37,9 @@ public class ClothingSizeServiceImpl implements ClothingSizeService {
 
     @Override
     public void deleteById(Integer id) {
-        clothingSizeRepository.deleteById(id);
+        if (clothingSizeRepository.existsById(id)) {
+            clothingSizeRepository.deleteById(id);
+        }
     }
 
     @Override
