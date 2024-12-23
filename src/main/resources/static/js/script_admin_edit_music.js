@@ -46,8 +46,7 @@ async function saveEditedAlbum() {
     }
 
     const formData = new FormData();
-    //todo поправить редактирование файла
-    const fileInput = document.querySelector('input[type="file"]');
+    const fileInput = document.getElementById("edit-album-logo");
     const file = fileInput.files[0];
 
     // Валидация данных
@@ -69,7 +68,7 @@ async function saveEditedAlbum() {
     formData.append('file', file);
 
     try {
-        const s3response = fetch('/api/v1/s3bucket-storage/balls-group-storage-music/upload/', {
+        const s3response = await fetch('/api/v1/s3bucket-storage/balls-group-storage-music/upload/', {
             method: 'POST',
             body: formData
         })
@@ -89,7 +88,7 @@ async function saveEditedAlbum() {
         });
 
         const result = await response.text();
-        s3response.text();
+        await s3response.text();
         alert(result);
 
         await loadAlbums()
