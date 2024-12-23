@@ -18,11 +18,36 @@ async function submitOrder() {
         size: document.querySelector('.size-button.active')?.textContent
     }
 
+    const sizeContainer = document.getElementById("sizes");
+    if (productData.size === undefined && sizeContainer.style.display !== "none") {
+        alert("Выберите размер");
+        return;
+    }
+
     const userData = {
         fullName: document.getElementById('name').value,
         phone: document.getElementById('phone').value,
         address: document.getElementById('address').value,
         email: document.getElementById('email').value
+    }
+
+    if (!userData.fullName) {
+        alert("Введите свое ФИО");
+        return;
+    }
+
+    if (!userData.address) {
+        alert("Введите адрес доставки");
+        return;
+    }
+
+    // Регулярные выражения для проверки телефона и email
+    const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\\s./0-9]*$/; // Для международных и локальных номеров
+    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+    if (!phoneRegex.test(userData.phone) && !emailRegex.test(userData.email)) {
+        alert('Введите корректный телефон или email!');
+        return;
     }
 
     try {

@@ -53,9 +53,11 @@
             </div>
             <div class="modal-body">
                 <input type="text" id="name" placeholder="ФИО">
-                <input type="text" id="phone" placeholder="Телефон">
+                <input type="tel" id="phone" placeholder="Телефон"
+                       pattern="\\+?[0-9\\-\\s()]{10,}" inputmode="tel">
                 <input type="text" id="address" placeholder="Адрес доставки">
-                <input type="email" id="email" placeholder="Электронная почта">
+                <input type="email" id="email" placeholder="Электронная почта"
+                       pattern="[^\\s@]+@[^\\s@]+\\.[^\\s@]+" inputmode="email">
             </div>
             <div class="modal-footer">
                 <button id="submit-order" onclick="submitOrder()">Оформить</button>

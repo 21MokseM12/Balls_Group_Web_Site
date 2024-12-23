@@ -120,6 +120,7 @@
     color: #fff;
 }
 
+/* Стили модального окна */
 .buy-modal-window {
     display: none;
     position: fixed;
@@ -127,7 +128,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    height: 600px;
+    height: 350px;
     padding: 20px;
     background-color: #333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -147,68 +148,75 @@
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .modal-header h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
+    color: #fff;
 }
 
-/* Иконка закрытия */
 .close-modal {
     background: none;
     border: none;
     cursor: pointer;
     color: #666;
-    float: right;
     font-size: 24px;
     font-weight: bold;
     transition: color 0.3s ease, transform 0.2s ease;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
 .close-modal:hover,
 .close-modal:focus {
-    color: #d32f2f; /* Красный при наведении */
-    transform: rotate(90deg); /* Легкое вращение */
+    color: #d32f2f;
+    transform: rotate(90deg);
 }
 
 .modal-body {
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    height: calc(100% - 100px);
 }
 
 .modal-body input {
-    width: calc(100% - 10px);
-    margin-bottom: 15px;
-    padding: 8px;
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #444;
+    color: #fff;
 }
 
 .modal-footer {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: right;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
 }
 
 .modal-footer button {
-    width: 100px;
-    height: 50px;
     padding: 10px 20px;
     border: none;
-    background-color: white;
-    color: #74c8b0;
-    border-radius: 10px;
+    background-color: #74c8b0;
+    color: #fff;
+    border-radius: 5px;
     cursor: pointer;
-    align-content: center;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .modal-footer button:hover {
-    background-color: #74c8b0;
-    color: white;
-    transform: scale(1.2);
+    background-color: #5ba996;
+    transform: scale(1.1);
 }
+
