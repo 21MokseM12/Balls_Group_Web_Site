@@ -27,7 +27,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<Account> getAccountById(Long id) {
+    public Optional<Account> getAccount(Long id) {
         return accountService.getAccountById(id);
     }
 
@@ -52,7 +52,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<Role> getRoleById(Integer id) {
+    public Optional<Role> getRole(Integer id) {
         return roleService.getRoleById(id);
     }
 

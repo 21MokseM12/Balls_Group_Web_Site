@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface UsersService {
     List<Account> getAllAccounts();
 
-    Optional<Account> getAccountById(Long id);
+    Optional<Account> getAccount(Long id);
 
     ResponseEntity<String> addAccount(Account account);
 
@@ -20,7 +20,7 @@ public interface UsersService {
 
     List<Role> getAllRoles();
 
-    Optional<Role> getRoleById(Integer id);
+    Optional<Role> getRole(Integer id);
 
     ResponseEntity<String> addRole(Role role);
 

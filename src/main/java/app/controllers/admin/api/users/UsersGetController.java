@@ -19,12 +19,12 @@ public class UsersGetController {
     private UsersService usersService;
 
     @GetMapping("account/{id}")
-    public Optional<Account> getAccountById(@PathVariable Long id) {
-        return usersService.getAccountById(id);
+    public Optional<Account> getAccount(@PathVariable Long id) {
+        return usersService.getAccount(id);
     }
 
     @GetMapping("role/{id}")
-    public Optional<Role> getRoleById(@PathVariable Integer id) {
-        return usersService.getRoleById(id);
+    public Optional<Role> getRole(@PathVariable Integer id) {
+        return usersService.getRole(id);
     }
 }
