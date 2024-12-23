@@ -20,17 +20,17 @@ public class ShopGetController {
     private ShopService shopService;
 
     @GetMapping("product/{id}")
-    public Optional<Product> getProductById(@PathVariable Long id) {
-        return shopService.findProductById(id);
+    public Optional<Product> getProduct(@PathVariable Long id) {
+        return shopService.getProduct(id);
     }
 
     @GetMapping("category/{id}")
-    public Optional<Category> getCategoryById(@PathVariable Long id) {
-        return shopService.findCategoryById(id);
+    public Optional<Category> getCategory(@PathVariable Long id) {
+        return shopService.getCategory(id);
     }
 
     @GetMapping("clothing-size/{id}")
-    public Optional<ClothingSize> getClothingSizeById(@PathVariable Integer id) {
-        return shopService.findClothingSizeById(id);
+    public Optional<ClothingSize> getClothingSize(@PathVariable Integer id) {
+        return shopService.getClothingSize(id);
     }
 }

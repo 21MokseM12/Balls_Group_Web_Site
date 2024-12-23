@@ -21,17 +21,17 @@ public class ShopGetCollectionController {
 
     @GetMapping("products/")
     public List<Product> getAllProducts() {
-        return shopService.findAllProducts();
+        return shopService.getAllProducts();
     }
 
     @GetMapping("categories/")
     public List<Category> getAllCategories() {
-        return shopService.findAllCategories();
+        return shopService.getAllCategories();
     }
 
     @GetMapping("clothing-sizes/")
     public List<ClothingSize> getAllClothingSizes() {
-        return shopService.findAllClothingSizes();
+        return shopService.getAllClothingSizes();
     }
 
     @GetMapping("orders/")

@@ -34,12 +34,12 @@ public class ShopServiceImpl implements ShopService {
 
 
     @Override
-    public List<Product> findAllProducts() {
+    public List<Product> getAllProducts() {
         return productService.findAllProducts();
     }
 
     @Override
-    public Optional<Product> findProductById(Long id) {
+    public Optional<Product> getProduct(Long id) {
         return productService.findProductById(id);
     }
 
@@ -59,12 +59,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Category> findAllCategories() {
+    public List<Category> getAllCategories() {
         return categoryService.findAllCategories();
     }
 
     @Override
-    public Optional<Category> findCategoryById(Long id) {
+    public Optional<Category> getCategory(Long id) {
         return categoryService.findCategoryById(id);
     }
 
@@ -84,12 +84,12 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<ClothingSize> findAllClothingSizes() {
+    public List<ClothingSize> getAllClothingSizes() {
         return clothingSizeService.findAllClothingSizes();
     }
 
     @Override
-    public Optional<ClothingSize> findClothingSizeById(Integer id) {
+    public Optional<ClothingSize> getClothingSize(Integer id) {
         return clothingSizeService.findClothingSizeById(id);
     }
 

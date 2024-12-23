@@ -1,7 +1,6 @@
 package app.controllers.admin.api.shop;
 
 import app.domain.entites.shop.Customer;
-import app.domain.entites.shop.Order;
 import app.domain.entites.shop.OrderDTO;
 import app.domain.entites.shop.OrderedProduct;
 import app.service.controllers.admin.shop.shop_management.ShopService;

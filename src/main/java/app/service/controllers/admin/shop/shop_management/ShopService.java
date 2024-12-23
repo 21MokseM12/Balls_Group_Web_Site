@@ -8,17 +8,17 @@ import java.util.Optional;
 
 public interface ShopService {
 
-    Optional<Product> findProductById(Long id);
+    Optional<Product> getProduct(Long id);
 
-    Optional<Category> findCategoryById(Long id);
+    Optional<Category> getCategory(Long id);
 
-    Optional<ClothingSize> findClothingSizeById(Integer id);
+    Optional<ClothingSize> getClothingSize(Integer id);
 
-    List<Product> findAllProducts();
+    List<Product> getAllProducts();
 
-    List<Category> findAllCategories();
+    List<Category> getAllCategories();
 
-    List<ClothingSize> findAllClothingSizes();
+    List<ClothingSize> getAllClothingSizes();
 
     ResponseEntity<String> deleteProduct(Long id);
 
