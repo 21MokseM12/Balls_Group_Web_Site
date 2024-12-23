@@ -1,5 +1,4 @@
 // products functions
-//todo добавить размеры
 async function loadProducts() {
     const response = await fetch('/api/v1/edit-shop/get-all/products/');
     const products = await response.json();
@@ -12,7 +11,7 @@ async function loadProducts() {
         row.innerHTML = `
                     <td>${product.id}</td>
                     <td>${product.title}</td>
-                    <td>${product.description}</td>
+                    <td>${product.clothingSize.map(size => size.size).join(", ")}</td>
                     <td>${product.price}</td>
                     <td>${product.quantityInStock}</td>
                     <td>${product.category.category}</td>
