@@ -63,7 +63,7 @@ public class ProductManagementService {
             productService.save(product);
             return ResponseEntity.ok("Товар был успешно обновлен!");
         } else {
-            return ResponseEntity.ok("Товар не был найден");
+            return ResponseEntity.badRequest().body("Товар не был найден");
         }
     }
 
@@ -72,7 +72,7 @@ public class ProductManagementService {
             productService.deleteById(id);
             return ResponseEntity.ok("Товар был успешно удален!");
         } else {
-            return ResponseEntity.ok("Товар не найден");
+            return ResponseEntity.badRequest().body("Товар не найден");
         }
     }
 
